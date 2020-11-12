@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="" />
+    <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/admin/depart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/produ.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +42,9 @@
         <option value="CSS File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1jh5IwytvozmeekzeqN9yKIhnyh" />
   <component name="ProjectViewState">
@@ -47,18 +76,33 @@
       <workItem from="1604258321608" duration="2504000" />
       <workItem from="1604297892849" duration="3967000" />
       <workItem from="1604917195867" duration="1512000" />
+      <workItem from="1605075221976" duration="4125000" />
+      <workItem from="1605163022129" duration="3624000" />
+      <workItem from="1605218881738" duration="1554000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="539" y="361" key="NewPhpFileDialog" timestamp="1604917936542">
+    <state x="539" y="361" key="NewPhpFileDialog" timestamp="1605218983288">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.813@0.23.1440.813" timestamp="1604258592187" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.814@0.23.1440.814" timestamp="1604243553623" />
-    <state x="539" y="361" key="NewPhpFileDialog/0.23.1440.816@0.23.1440.816" timestamp="1604917936542" />
+    <state x="539" y="361" key="NewPhpFileDialog/0.23.1440.816@0.23.1440.816" timestamp="1605218983288" />
   </component>
 </project>

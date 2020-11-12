@@ -1,4 +1,17 @@
 <?php
+session_start();
+require 'controller/login.php';
+$log=new Register();
+if(isset($_POST['sub'])){
+    $name=strip_tags($_POST['name']);
+    $id_job=strip_tags($_POST['id_job']);
+    $email=strip_tags($_POST['email']);
+    $phone=strip_tags($_POST['phone']);
+    $password=strip_tags($_POST['password']);
+    $typ=strip_tags($_POST['typ']);
+    $log->register($name,$id_job,$email,$phone,$password,$typ);
+
+}
 ?>
 <html lang="ar">
 <head>
@@ -53,6 +66,10 @@
                                </label>
                            </div>
 
+                           <div class="form-group text-right">
+                               <a href="" data-toggle="modal" data-target="#exampleModal">تسجيل جديد</a>
+                           </div>
+
                            <div class="form-group  text-center">
                                <input type="submit" class="btn btm-bas btn-center"  name="sub" value="تسجيل دخول ">
                            </div>
@@ -66,7 +83,55 @@
     </div>
 
 </div>
+<!-- start model pop-->
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <form method="post">
+                   <div class="form-group">
+                       <input type="text" name="name" class="form-control" placeholder="الاسم">
+                   </div>
+                   <div class="form-group">
+                       <input type="text" name="id_job" class="form-control"  placeholder="الرقم الوظيفي او الرقم الجامعي">
+                   </div>
+                   <div class="form-group">
+                       <input type="text" class="form-control" name="email"  placeholder="البريد الالكتروني">
+                   </div>
+                   <div class="form-group">
+                       <input type="text" name="phone" class="form-control"  placeholder="رقم التواصل">
+                   </div>
+                   <div class="form-group">
+                       <input type="text" name="password" class="form-control"  placeholder="كلمة المرور">
+                   </div>
+
+                   <div class="form-group" >
+                      <select name="typ" class="form-control">
+                          <option value="2">طالب</option>
+                          <option value="3">عضو هيئة تدريس</option>
+                      </select>
+                   </div>
+
+                   <div class="form-group text-center">
+                       <input type="submit" name="sub" class="btn btn-info" value="تسجيل جديد ">
+                   </div>
+
+
+               </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- end model pop -->
 <!-- JS bootstap-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
