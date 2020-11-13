@@ -27,6 +27,19 @@ class Admin extends DB{
         }
     }
 
+    public function addNewProudect($name,$price,$qu,$type,$paths){
+        $sql=$this->db_admin->prepare("INSERT INTO contact(id_types,title,price,quenity,file_path)VALUES (?,?,?,?,?)");
+        if($sql->execute(array($type,$name,$price,$qu,$paths))){
+            header("location:produ.php?msg=don");
+        }
+    }
+
+    public function getAllProud(){
+        $sql=$this->db_admin->prepare("SELECT * FROM contact");
+        $sql->execute();
+        return $sql;
+    }
+
 
 
 }

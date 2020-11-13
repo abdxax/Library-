@@ -8,8 +8,30 @@ class Register extends DB{
     }
 
     //login
-    public function login($user,$email){
-        
+    public function login($user,$pass){
+        $pass2=sha1($pass);
+        $sql=$this->db_user->prepare("SELECT * FROM user WHERE userName=? AND password=?");
+        $sql->execute(array($user,$pass2));
+        if($sql->rowCount()==1){
+            foreach ($sql as $s){
+                if($s['role_i']==1){
+                    $_SESSION['user']=$user;
+                    $_SESSION['pass']=$pass;
+                    header("location:admin/index.php");
+                }
+                else if($s['role_i']==2){
+                    $_SESSION['user']=$user;
+                    $_SESSION['pass']=$pass;
+                    header("location:student/index.php");
+                }
+                else if($s['role_i']==3){
+
+                }
+            }
+        }
+        else{
+
+        }
     }
 
     public function register($name,$id,$email,$phone,$pass,$job){

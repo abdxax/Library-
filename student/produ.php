@@ -3,11 +3,13 @@ session_start();
 require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
+$produ=$student->getProd($_GET['id']);
+$id_page=$_GET['id'];
 ?>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="">
+    <meta charset="UTF-8">
+    <meta name="">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -63,13 +65,13 @@ $dep=$student->getAllDep();
                 </li>
 
                 <?php
-                  foreach ($dep as $d){
-                      echo '
+                foreach ($dep as $d){
+                    echo '
                           <li class="nav-item">
                     <a href="produ.php?id='.$d['id'].'" class="nav-link">'.$d['dep_name'].'</a>
                 </li>
                       ';
-                  }
+                }
                 ?>
 
 
@@ -92,39 +94,36 @@ $dep=$student->getAllDep();
     <!-- start contact-->
     <div class="contcat">
 
-           <div class="container">
-               <div class="row">
+        <div class="container">
+            <div class="row">
+                <?php
 
-                   <div class="col-md-4">
-                       <div class="card">
-                           <div class="card-body">
-                               <p>kkkk</p>
-                           </div>
-                       </div>
-                   </div>
-
-                   <div class="col-md-4">
-                       <div class="card">
-                           <div class="card-body">
-                               <p>kkkk</p>
-                           </div>
-                       </div>
-                   </div>
-
-                   <div class="col-md-4">
-                       <div class="card">
-                           <div class="card-body">
-                               <p>kkkk</p>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="cv"></div>
-
-               </div>
+                foreach ($produ as $p){
+                    echo '
+                     <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img src="'.$p['file_path'].'" width="200px" height="200px">
+                            <p>'.$p['title'].'</p>
+                            <a href="addcar.php?id='.$id_page.'&id_pro='.$p['id'].'" class="btn btn-info ">اضافة للسلة </a>
+                        </div>
+                    </div>
+                </div>
+                    
+                    ';
+                }
+                ?>
 
 
 
-           </div>
+
+                <div class="cv"></div>
+
+            </div>
+
+
+
+        </div>
 
     </div>
 </div><!-- end wrapper-->

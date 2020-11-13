@@ -3,6 +3,7 @@ session_start();
 require "../controller/Admin.php";
 $adm=new Admin();
 $departs=$adm->getAllDep();
+$pros=$adm->getAllProud();
 if(isset($_FILES['pro_file'])){
     print_r($_FILES['pro_file']);
     $pro_name=$_POST['pro_name'];
@@ -17,7 +18,7 @@ if(isset($_FILES['pro_file'])){
         echo "done";
     }
     //$dep=$_POST['dep'];
-    //$adm->addNewDepart($dep);
+    $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
 }
 ?>
 <html>
@@ -105,7 +106,7 @@ if(isset($_FILES['pro_file'])){
 
                 if(isset($_GET['msg'])){
                     echo '<div class="col-12 alert alert-success text-center">
-تم اضافة القسم بنجاح 
+تم اضافة المنتج بنجاح 
 </div>';
                 }
                 ?>
@@ -153,18 +154,29 @@ if(isset($_FILES['pro_file'])){
                         <thead>
                         <tr>
                             <th></th>
+                            <th>المنتج</th>
+                            <th>الكمية</th>
+                            <th>السعر</th>
                             <th>القسم</th>
+                            <th>المرفق</th>
+                            <th>تعديل</th>
                             <th>حذف</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         $count=1;
-                        foreach ($departs as $depart) {
+                        foreach ($pros as $pro) {
                             echo '
                             <tr>
                             <td>'.$count.'</td>
-                             <td>'.$depart['dep_name'].'</td>
+                             <td>'.$pro['title'].'</td>
+                               <td>'.$pro['quenity'].'</td>
+                                 <td>'.$pro['price'].'</td>
+                                   <td>'.$pro['id_types'].'</td>
+                                    <td><a href="'.$pro['file_path'].'">k</a></td>
+                                
+                                 <td><a href="" class="btn badge-info">تعديل </a></td>   
                              <td><a href="" class="btn badge-danger">حذف </a></td>
 </tr>
                             ';

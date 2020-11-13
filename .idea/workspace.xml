@@ -20,13 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/depart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/produ.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/student.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/student/produ.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/produ.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/produ.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +35,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -53,6 +56,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -64,7 +68,10 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="" />
@@ -79,30 +86,38 @@
       <workItem from="1605075221976" duration="4125000" />
       <workItem from="1605163022129" duration="3624000" />
       <workItem from="1605218881738" duration="1554000" />
+      <workItem from="1605221482441" duration="2075000" />
+      <workItem from="1605267005845" duration="4408000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="539" y="361" key="NewPhpFileDialog" timestamp="1605218983288">
-      <screen x="0" y="23" width="1440" height="816" />
+    <state x="479" y="282" key="NewPhpFileDialog" timestamp="1605268645003">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="479" y="282" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1605268645003" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.813@0.23.1440.813" timestamp="1604258592187" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.814@0.23.1440.814" timestamp="1604243553623" />
     <state x="539" y="361" key="NewPhpFileDialog/0.23.1440.816@0.23.1440.816" timestamp="1605218983288" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1605267006557">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1605267006557" />
   </component>
 </project>

@@ -2,6 +2,7 @@
 session_start();
 require 'controller/login.php';
 $log=new Register();
+$msg='';
 if(isset($_POST['sub'])){
     $name=strip_tags($_POST['name']);
     $id_job=strip_tags($_POST['id_job']);
@@ -11,6 +12,12 @@ if(isset($_POST['sub'])){
     $typ=strip_tags($_POST['typ']);
     $log->register($name,$id_job,$email,$phone,$password,$typ);
 
+}
+
+if(isset($_POST['sub-login'])){
+$user=strip_tags($_POST['id']);
+$pass=strip_tags($_POST['pass']);
+$log->login($user,$pass);
 }
 ?>
 <html lang="ar">
@@ -53,7 +60,7 @@ if(isset($_POST['sub'])){
 
                    <div class="row justify-content-center">
 
-                       <form class="">
+                       <form class="" method="post">
                            <div class="form-group ">
                                <label>
                                    <input type="text" class="form-control text-center"  name="id" placeholder="معرف المستخدم">
@@ -71,7 +78,7 @@ if(isset($_POST['sub'])){
                            </div>
 
                            <div class="form-group  text-center">
-                               <input type="submit" class="btn btm-bas btn-center"  name="sub" value="تسجيل دخول ">
+                               <input type="submit" class="btn btm-bas btn-center"  name="sub-login" value="تسجيل دخول ">
                            </div>
 
                        </form>
