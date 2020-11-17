@@ -20,14 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/student.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/student/produ.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/student/Bill.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/student/car.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/produ.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/produ.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student/produ.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/produ.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +86,12 @@
       <workItem from="1605218881738" duration="1554000" />
       <workItem from="1605221482441" duration="2075000" />
       <workItem from="1605267005845" duration="4408000" />
+      <workItem from="1605277816820" duration="1031000" />
+      <workItem from="1605388868552" duration="6000" />
+      <workItem from="1605388950107" duration="167000" />
+      <workItem from="1605427817631" duration="3796000" />
+      <workItem from="1605505857202" duration="5559000" />
+      <workItem from="1605515294075" duration="13000" />
     </task>
     <servers />
   </component>
@@ -108,16 +112,16 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="479" y="282" key="NewPhpFileDialog" timestamp="1605268645003">
+    <state x="479" y="282" key="NewPhpFileDialog" timestamp="1605507246709">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="479" y="282" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1605268645003" />
+    <state x="479" y="282" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1605507246709" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.813@0.23.1440.813" timestamp="1604258592187" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.814@0.23.1440.814" timestamp="1604243553623" />
     <state x="539" y="361" key="NewPhpFileDialog/0.23.1440.816@0.23.1440.816" timestamp="1605218983288" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1605267006557">
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1605515299164">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1605267006557" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1605515299164" />
   </component>
 </project>

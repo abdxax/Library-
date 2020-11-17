@@ -1,19 +1,20 @@
 <?php
 session_start();
 require '../controller/student.php';
+
 $student=new Student();
 $dep=$student->getAllDep();
-$produ=$student->getProd($_GET['id']);
-$id_page=$_GET['id'];
 
-if(isset($_POST['subsa'])){
-    $qu=$_POST['que'];
-    $id_cont=$_POST['id'];
-    $msg=$student->addToCar($_SESSION['user'],$id_cont,$qu);
-    if($msg=="done"){
-        header("location:produ.php?id=".$id_page."");
+
+    if($_POST['paywah']==1){
+     $total=$_POST['total'];
+
+     $id=$student->createBill($total,'1','0',$_SESSION['user'],'0');
+     echo $id;
     }
-}
+
+
+
 ?>
 <html>
 <head>
@@ -77,7 +78,6 @@ if(isset($_POST['subsa'])){
                 foreach ($dep as $d){
                     echo '
                           <li class="nav-item">
-                          
                     <a href="produ.php?id='.$d['id'].'" class="nav-link">'.$d['dep_name'].'</a>
                 </li>
                       ';
@@ -106,45 +106,6 @@ if(isset($_POST['subsa'])){
 
         <div class="container">
             <div class="row">
-                <?php
-
-                foreach ($produ as $p){
-                    echo '
-                     <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <img src="'.$p['file_path'].'" width="200px" height="200px">
-                            <p>'.$p['title'].'</p>
-                            <p>'.$p['quenity'].'</p>
-                            <p>'.$p['price'].'</p>
-                            <form method="POST" class="">
-                          <div class="form-group">
-                          <div class="row">
-                          <div class="col-3 ">
-                            <input type="number" class="form-control" name="que" value="1" width="30px">
-                            <input type="hidden" name="id" value="'.$p['id'].'">
-                            <input type="hidden" name="page" value="'.$id_page.'">
-</div>
-
-<div class="col-7 text-center">
-                            <input type="submit" class="btn btn-info" name="subsa" value="اضافة الى السلة ">
-</div>
-
-
-</div>
-</div>
-
- 
-</form>
-                            
-                        </div>
-                    </div>
-                </div>
-                    
-                    ';
-                }
-                ?>
-
 
 
 
