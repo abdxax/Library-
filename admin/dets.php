@@ -1,11 +1,16 @@
 <?php
-session_start();
-require "../controller/Admin.php";
+require '../controller/Admin.php';
 $adm=new Admin();
-$departs=$adm->getAllDep();
-if(isset($_POST['sub'])){
-    $dep=$_POST['dep'];
-    $adm->addNewDepart($dep);
+$orders=$adm->getProduect($_GET['id']);
+$orders_pay=$adm->getPayWay($_GET['id']);
+$id_bill=$_GET['id'];
+if(isset($_GET['id_bil'])){
+    $adm->updataeOrdr($_GET['id_bil']);
+}
+
+if(isset($_POST['sub-pay'])){
+    $pay=$_POST['pays'];
+    $adm->updatePay($id_bill,$pay,$total);
 }
 ?>
 <html>
@@ -18,7 +23,9 @@ if(isset($_POST['sub'])){
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <style>
-
+        table{
+            overflow: scroll;
+        }
 
     </style>
 </head>
@@ -88,56 +95,84 @@ if(isset($_POST['sub'])){
     <div class="contcat">
 
         <div class="container">
-            <div class="row">
-                <?php
+            <div class="row justify-content-center">
 
-                if(isset($_GET['msg'])){
-                    echo '<div class="col-12 alert alert-success text-center">
-تم اضافة القسم بنجاح 
-</div>';
-                }
-                ?>
-                  <div class="col-6">
-                      <form method="post">
-                          <div class="form-group">
-                              <div class="col-8">
-                                  <input type="text" name="dep" class="form-control" placeholder="اسم القسم ">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <div class="col-8 text-center">
-                                  <input type="submit" name="sub" class="btn btn-info" value="اضافة">
-                              </div>
-                          </div>
-                      </form>
-                  </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>رقم الطلبية</th>
+                        <th>المنتج</th>
+                        <th>العدد</th>
+                        <th>السعر</th>
 
-                <div class="col-10">
-                    <table class="table">
-                        <thead>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $orders_status='';
+                    foreach ($orders as $ord){
+                    $orders_status=$ord['status'];
+                        echo '
                         <tr>
-                            <th></th>
-                            <th>القسم</th>
-                            <th>حذف</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $count=1;
-                        foreach ($departs as $depart) {
-                            echo '
-                            <tr>
-                            <td>'.$count.'</td>
-                             <td>'.$depart['dep_name'].'</td>
-                             <td><a href="" class="btn badge-danger">حذف </a></td>
+                         <td></td>
+                         <td>'.$ord['bill_id'].'</td>
+                         <td>'.$ord['title'].'</td>
+                         <td>'.$ord['qu'].'</td>
+                         <td>'.$ord['price'].'</td>
+                        
 </tr>
-                            ';
-                        }
+                         ';
+                    }
+                    ?>
+                    </tbody>
+                    <?php
+                    if($orders_status!="done") {
                         ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cv"></div>
+                        <div>
+                            <a href="dets.php?id_bil=<?php echo $id_bill; ?>">جاهزه للتسليم </a>
+                        </div>
+                        <?php
+
+                    }
+                    else {
+                         $pay_way='';
+                         $total=0;
+                         $payed=0;
+                        foreach ($orders_pay as $pay){
+                            $pay_way=$pay['payway'];
+                            $total=$pay['total'];
+                            $payed=$pay['totalpay'];
+
+                        }
+                        if($pay_way==1) {
+
+
+                            ?>
+
+                             <div class="col-8 text-center">
+                                 <p>الحساب</p>
+                                 <p><?php echo $total-$payed;?></p>
+                                 <form method="post">
+                                   <div class="form-group">
+                                       <div class="col-4">
+                                           <input type="text" name="pays" class="form-control">
+                                       </div>
+                                   </div>
+                                     <div class="form-group">
+                                         <div class="col-4">
+                                             <input type="submit" name="sub-pay" class="btn btn-info" value="دفع">
+                                         </div>
+                                     </div>
+
+                                 </form>
+                             </div>
+
+                            <?php
+                        }
+                    }
+                    ?>
+                    <div class="cv"></div>
 
             </div>
 

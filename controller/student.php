@@ -28,17 +28,29 @@ class Student extends DB{
     }
 
     public function getCar($id){
-        $sql=$this->student_db->prepare("SELECT * FROM car LEFT JOIN contact ON car.contact_id = contact.id WHERE car.email=?");
-        $sql->execute(array($id));
+        $sql=$this->student_db->prepare("SELECT * FROM car LEFT JOIN contact ON car.contact_id = contact.id WHERE car.email=? AND status=?");
+        $sql->execute(array($id,"waiting_buy"));
         return $sql;
     }
 
     public function createBill($total,$payway,$rad,$user,$totalpay){
-        $sql=$this->student_db->prepare("INSERT INTO bill (total,payway,residual,email,totalpay) VALUES (?,?,?,?,?)");
-        $id_last=$sql->execute(array($total,$payway,$rad,$user,$totalpay));
-        foreach ($id_last as $is){
-            return $is['id'];
+        $sql=$this->student_db->prepare("INSERT INTO bill (total,payway,residual,email,totalpay,status) VALUES (?,?,?,?,?,?)");
+        $sql->execute(array($total,$payway,$rad,$user,$totalpay,"newOrder"));
+
+        $last_id=$this->student_db->lastInsertId();
+        $sql_update=$this->student_db->prepare("UPDATE car SET status=? , bill_id=? WHERE email=? AND status=?");
+        if($sql_update->execute(array("wait",$last_id,$user,'waiting_buy'))){
+            header("location:index.php");
         }
         //return $id_last;
     }
+
+
+    //get theh  oroders
+    public function getOrder($id){
+        $sql=$this->student_db->prepare("SELECT * FROM bill WHERE email=?");
+        $sql->execute(array($id));
+        return $sql;
+    }
+
 }

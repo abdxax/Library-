@@ -55,7 +55,7 @@
         <div class="sidebar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="" class="nav-link">الصفحة الرئيسية</a>
+                    <a href="index.php" class="nav-link">الصفحة الرئيسية</a>
                 </li>
 
                 <li class="nav-item">
@@ -63,11 +63,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">المنتجات</a>
+                    <a href="produ.php" class="nav-link">المنتجات</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">الطلبات</a>
+                    <a href="orders.php" class="nav-link">الطلبات</a>
                 </li>
 
                 <li class="nav-item">

@@ -59,7 +59,7 @@ $dep=$student->getAllDep();
         <div class="sidebar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="" class="nav-link">الصفحة الرئيسية</a>
+                    <a href="index.php" class="nav-link">الصفحة الرئيسية</a>
                 </li>
 
                 <?php
@@ -74,11 +74,11 @@ $dep=$student->getAllDep();
 
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">طلباتي</a>
+                    <a href="myorder.php" class="nav-link">طلباتي</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">االسلة</a>
+                    <a href="car.php" class="nav-link">السلة</a>
                 </li>
 
                 <li class="nav-item">

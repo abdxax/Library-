@@ -20,6 +20,10 @@ if(isset($_FILES['pro_file'])){
     //$dep=$_POST['dep'];
     $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
 }
+
+if(isset($_GET['id_del'])){
+    $adm->deletePro($_GET['id_del']);
+}
 ?>
 <html>
 <head>
@@ -76,7 +80,7 @@ if(isset($_FILES['pro_file'])){
         <div class="sidebar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="" class="nav-link">الصفحة الرئيسية</a>
+                    <a href="index.php" class="nav-link">الصفحة الرئيسية</a>
                 </li>
 
                 <li class="nav-item">
@@ -84,11 +88,11 @@ if(isset($_FILES['pro_file'])){
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">المنتجات</a>
+                    <a href="produ.php" class="nav-link">المنتجات</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">الطلبات</a>
+                    <a href="orders.php" class="nav-link">الطلبات</a>
                 </li>
 
                 <li class="nav-item">
@@ -166,7 +170,9 @@ if(isset($_FILES['pro_file'])){
                         <tbody>
                         <?php
                         $count=1;
+                        $qus=0;
                         foreach ($pros as $pro) {
+                            $qus=$pro['quenity'];
                             echo '
                             <tr>
                             <td>'.$count.'</td>
@@ -176,10 +182,43 @@ if(isset($_FILES['pro_file'])){
                                    <td>'.$pro['id_types'].'</td>
                                     <td><a href="'.$pro['file_path'].'">k</a></td>
                                 
-                                 <td><a href="" class="btn badge-info">تعديل </a></td>   
-                             <td><a href="" class="btn badge-danger">حذف </a></td>
+                                 <td><a href="" class="btn badge-info" data-toggle="modal" data-target="#exampleModal">تعديل </a></td>   
+                             <td><a href="produ.php?id_del='.$pro['id'].'" class="btn badge-danger">حذف </a></td>
+                             
+                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">الكمية</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <form method="POST">
+                   <div class="form-group">
+                   <p>'.$pro['id'].'</p>
+                       <input type="text" name="qu_num" class="form-control" value='.$pro['quenity'].'>>
+                   </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </tr>
+
+<!-- pop -->
+
+
+
                             ';
+
                         }
                         ?>
                         </tbody>

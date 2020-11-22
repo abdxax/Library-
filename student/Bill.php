@@ -5,12 +5,21 @@ require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
 
+$total=$_POST['total'];
 
     if($_POST['paywah']==1){
      $total=$_POST['total'];
 
-     $id=$student->createBill($total,'1','0',$_SESSION['user'],'0');
+     $id=$student->createBill($total,'1',$total,$_SESSION['user'],'0');
      echo $id;
+    }
+
+    if(isset($_POST['sub'])){
+        $total=$_POST['total'];
+
+
+        $id=$student->createBill($total,'2','0',$_SESSION['user'],$total);
+        echo $id;
     }
 
 
@@ -71,7 +80,7 @@ $dep=$student->getAllDep();
         <div class="sidebar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="" class="nav-link">الصفحة الرئيسية</a>
+                    <a href="index.php" class="nav-link">الصفحة الرئيسية</a>
                 </li>
 
                 <?php
@@ -86,11 +95,11 @@ $dep=$student->getAllDep();
 
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">طلباتي</a>
+                    <a href="myorder.php" class="nav-link">طلباتي</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">االسلة</a>
+                    <a href="car.php" class="nav-link">االسلة</a>
                 </li>
 
                 <li class="nav-item">
@@ -105,9 +114,36 @@ $dep=$student->getAllDep();
     <div class="contcat">
 
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
+
+                <div class="col-6">
+                    <form method="post">
+                        <input type="hidden" name="total" value=<?php echo $total;?>>
+                        <input type="hidden" name="payway" value="2">
+                        <div class="form-group col-6">
+                            <input type="text" name="name" class="form-control" placeholder="الاسم">
+                        </div>
+                        <div class="form-group col-6">
+                            <input type="text" name="numb" class="form-control" placeholder="رقم البطاقة">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <input type="text" name="exp" class="form-control" placeholder="mm/yy">
+                                </div>
+                                <div class="form-group col-3">
+                                    <input type="text" name="ccv" class="form-control" placeholder="ccv">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <input type="submit" name="sub" class="btn btn-info" value="دفع">
+                        </div>
 
 
+                    </form>
+                </div>
 
                 <div class="cv"></div>
 
