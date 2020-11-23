@@ -2,6 +2,7 @@
 session_start();
 require 'controller/login.php';
 $log=new Register();
+$cols=$log->getColl();
 $msg='';
 if(isset($_POST['sub'])){
     $name=strip_tags($_POST['name']);
@@ -10,7 +11,8 @@ if(isset($_POST['sub'])){
     $phone=strip_tags($_POST['phone']);
     $password=strip_tags($_POST['password']);
     $typ=strip_tags($_POST['typ']);
-    $log->register($name,$id_job,$email,$phone,$password,$typ);
+    $cols=$_POST['cols'];
+    $log->register($name,$id_job,$email,$phone,$password,$typ,$cols);
 
 }
 
@@ -108,6 +110,18 @@ $log->login($user,$pass);
                    </div>
                    <div class="form-group">
                        <input type="text" name="id_job" class="form-control"  placeholder="الرقم الوظيفي او الرقم الجامعي">
+                   </div>
+                   <div class="form-group">
+                       <select class="form-control" name="cols">
+                           <?php
+                           foreach ($cols as $col){
+                               echo '
+                               <option value="'.$col['id'].'">'.$col['name_col'].'</option>
+                               ';
+                           }
+
+                           ?>
+                       </select>
                    </div>
                    <div class="form-group">
                        <input type="text" class="form-control" name="email"  placeholder="البريد الالكتروني">

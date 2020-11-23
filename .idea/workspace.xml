@@ -20,20 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/dets.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/orders.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/student/myorder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/edit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teacher/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/depart.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/depart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/produ.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/produ.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/Bill.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/Bill.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/car.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/student/produ.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/produ.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +99,10 @@
       <workItem from="1605979841602" duration="20000" />
       <workItem from="1605988822707" duration="1954000" />
       <workItem from="1606031961065" duration="2396000" />
+      <workItem from="1606055095265" duration="2000" />
+      <workItem from="1606072054259" duration="1191000" />
+      <workItem from="1606073594555" duration="56000" />
+      <workItem from="1606126213087" duration="2007000" />
     </task>
     <servers />
   </component>
@@ -127,16 +123,16 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="479" y="282" key="NewPhpFileDialog" timestamp="1605830924251">
+    <state x="479" y="282" key="NewPhpFileDialog" timestamp="1606127229088">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="479" y="282" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1605830924251" />
+    <state x="479" y="282" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1606127229088" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.813@0.23.1440.813" timestamp="1604258592187" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.814@0.23.1440.814" timestamp="1604243553623" />
     <state x="539" y="361" key="NewPhpFileDialog/0.23.1440.816@0.23.1440.816" timestamp="1605218983288" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1606032125531">
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1606126215450">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1606032125531" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1606126215450" />
   </component>
 </project>

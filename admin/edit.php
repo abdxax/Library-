@@ -4,6 +4,7 @@ require "../controller/Admin.php";
 $adm=new Admin();
 $departs=$adm->getAllDep();
 $pros=$adm->getAllProud();
+$id=$_GET['id'];
 if(isset($_FILES['pro_file'])){
     print_r($_FILES['pro_file']);
     $pro_name=$_POST['pro_name'];
@@ -133,7 +134,7 @@ if(isset($_GET['id_del'])){
                                 <select class="form-control" name="pro_type">
                                     <?php
                                     foreach ($departs as $depart){
-                                       echo '
+                                        echo '
                                        <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
                                        ';
                                     }
@@ -153,50 +154,7 @@ if(isset($_GET['id_del'])){
                     </form>
                 </div>
 
-                <div class="col-10">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>المنتج</th>
-                            <th>الكمية</th>
-                            <th>السعر</th>
-                            <th>القسم</th>
-                            <th>المرفق</th>
 
-                            <th>حذف</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $count=1;
-                        $qus=0;
-                        foreach ($pros as $pro) {
-                            $qus=$pro['quenity'];
-                            echo '
-                            <tr>
-                            <td>'.$count.'</td>
-                             <td>'.$pro['title'].'</td>
-                               <td>'.$pro['quenity'].'</td>
-                                 <td>'.$pro['price'].'</td>
-                                   <td>'.$pro['id_types'].'</td>
-                                    <td><a href="'.$pro['file_path'].'" class="btn btn-info">فتح</a></td>
-                                
-                             <td><a href="produ.php?id_del='.$pro['id'].'" class="btn badge-danger">حذف </a></td>
-                             
-                            
-
-
-                            ';
-
-
-
-                        }
-                        //                                 <td><a href="edit.php?id='.$pro['id'].'" class="btn badge-info" data-toggle="modal" data-target="#exampleModal">تعديل </a></td>
-                        ?>
-                        </tbody>
-                    </table>
-                </div>
                 <div class="cv"></div>
 
             </div>

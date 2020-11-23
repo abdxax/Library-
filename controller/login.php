@@ -25,7 +25,9 @@ class Register extends DB{
                     header("location:student/index.php");
                 }
                 else if($s['role_i']==3){
-
+                    $_SESSION['user']=$user;
+                    $_SESSION['pass']=$pass;
+                    header("location:teacher/index.php");
                 }
             }
         }
@@ -34,15 +36,22 @@ class Register extends DB{
         }
     }
 
-    public function register($name,$id,$email,$phone,$pass,$job){
+    public function register($name,$id,$email,$phone,$pass,$job,$id_cols){
         $pas=sha1($pass);
      $sql=$this->db_user->prepare("INSERT INTO user (userName,password,role_i)VALUES (?,?,?)");
      if($sql->execute(array($id,$pas,$job))){
-      $sql_info=$this->db_user->prepare("INSERT INTO info(user_id,email,phone,name)VALUES (?,?,?,?)");
-      if($sql_info->execute(array($id,$email,$phone,$name))){
+      $sql_info=$this->db_user->prepare("INSERT INTO info(user_id,email,phone,name,college)VALUES (?,?,?,?,?)");
+      if($sql_info->execute(array($id,$email,$phone,$name,$id_cols))){
 
       }
      }
+    }
+
+
+    public function getColl(){
+        $sql=$this->db_user->prepare("SELECT * FROM colloeg_dep");
+        $sql->execute();
+        return $sql;
     }
 
 
