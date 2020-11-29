@@ -1,4 +1,8 @@
 <?php
+session_start();
+require '../controller/student.php';
+$student=new Student();
+$info=$student->getName($_SESSION['user']);
 ?>
 <html>
 <head>
@@ -71,7 +75,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">تسجيل خروج</a>
+                    <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
             </ul>
         </div>

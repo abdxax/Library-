@@ -82,8 +82,14 @@ $prods=$student->getCar($_SESSION['user']);
                     <a href="car.php" class="nav-link">االسلة</a>
                 </li>
 
+
                 <li class="nav-item">
-                    <a href="" class="nav-link">تسجيل خروج</a>
+                    <a href="contact.php" class="nav-link">المحتوى</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
 
 

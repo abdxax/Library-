@@ -3,6 +3,7 @@ session_start();
 require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
+$info=$student->getName($_SESSION['user']);
 ?>
 <html>
 <head>
@@ -82,7 +83,11 @@ $dep=$student->getAllDep();
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">تسجيل خروج</a>
+                    <a href="contact.php" class="nav-link">المحتوى</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
 
 
@@ -94,30 +99,21 @@ $dep=$student->getAllDep();
 
            <div class="container">
                <div class="row">
-
-                   <div class="col-md-4">
-                       <div class="card">
-                           <div class="card-body">
-                               <p>kkkk</p>
-                           </div>
-                       </div>
+                   <div class="text-center">
+                       <?php
+                       foreach ($info as $i){
+                           echo'
+                      <p>الاسم: '.$i['name'].'</p>
+                      <p>الرقم الوظيفي : '.$i['user_id'].'</p>
+                      ';
+                       }
+                       ?>
                    </div>
 
-                   <div class="col-md-4">
-                       <div class="card">
-                           <div class="card-body">
-                               <p>kkkk</p>
-                           </div>
-                       </div>
-                   </div>
 
-                   <div class="col-md-4">
-                       <div class="card">
-                           <div class="card-body">
-                               <p>kkkk</p>
-                           </div>
-                       </div>
-                   </div>
+
+
+                   
                    <div class="cv"></div>
 
                </div>

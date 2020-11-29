@@ -1,29 +1,28 @@
 <?php
 session_start();
-require "../controller/Admin.php";
-$adm=new Admin();
-$departs=$adm->getAllDep();
-$pros=$adm->getAllProud();
+require "../controller/teacher.php";
+$adm=new teacher();
+$departs=$adm->getAllContact($_SESSION['user']);
 if(isset($_FILES['pro_file'])){
-    print_r($_FILES['pro_file']);
+    //print_r($_FILES['pro_file']);
     $pro_name=$_POST['pro_name'];
     $pro_qua=$_POST['pro_qua'];
-    $pro_price=$_POST['pro_price'];
-    $pro_type=$_POST['pro_type'];
+
 
     $fname=$_FILES['pro_file']['name'];
     $ftm=$_FILES['pro_file']['tmp_name'];
-    $path="../poster/".$fname;
+    $path="../pdfs/".$fname;
     if(move_uploaded_file($ftm,$path)){
         echo "done";
     }
     //$dep=$_POST['dep'];
-    $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
+    $adm->addContact($_SESSION['user'],$path,$adm->getCol($_SESSION['user']),$pro_name,$pro_qua);
 }
 
 if(isset($_GET['id_del'])){
-    $adm->deletePro($_GET['id_del']);
+    $adm->deleteContact($_GET['id_del']);
 }
+
 ?>
 <html>
 <head>
@@ -84,16 +83,9 @@ if(isset($_GET['id_del'])){
                 </li>
 
                 <li class="nav-item">
-                    <a href="depart.php" class="nav-link">الاقسام</a>
+                    <a href="contact.php" class="nav-link">رفع محتوى</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="produ.php" class="nav-link">المنتجات</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="orders.php" class="nav-link">الطلبات</a>
-                </li>
 
                 <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>
@@ -110,7 +102,7 @@ if(isset($_GET['id_del'])){
 
                 if(isset($_GET['msg'])){
                     echo '<div class="col-12 alert alert-success text-center">
-تم اضافة المنتج بنجاح 
+تم اضافة القسم بنجاح 
 </div>';
                 }
                 ?>
@@ -118,28 +110,14 @@ if(isset($_GET['id_del'])){
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="col-8">
-                                <input type="text" name="pro_name" class="form-control" placeholder="اسم المنتج ">
+                                <input type="text" name="pro_name" class="form-control" placeholder="العنوان">
                             </div>
 
                             <div class="col-8">
-                                <input type="text" name="pro_qua" class="form-control" placeholder="الكمية">
+                                <input type="text" name="pro_qua" class="form-control" placeholder="الوصف">
                             </div>
 
-                            <div class="col-8">
-                                <input type="text" name="pro_price" class="form-control" placeholder="السعر">
-                            </div>
 
-                            <div class="col-8">
-                                <select class="form-control" name="pro_type">
-                                    <?php
-                                    foreach ($departs as $depart){
-                                       echo '
-                                       <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
-                                       ';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
 
                             <div class="col-8">
                                 <input type="file" name="pro_file" class="form-control" placeholder=" ">
@@ -158,41 +136,26 @@ if(isset($_GET['id_del'])){
                         <thead>
                         <tr>
                             <th></th>
-                            <th>المنتج</th>
-                            <th>الكمية</th>
-                            <th>السعر</th>
-                            <th>القسم</th>
-                            <th>المرفق</th>
-
+                            <th>العنوان</th>
+                            <th>الوصف</th>
+                            <th>المحتوى</th>
                             <th>حذف</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                         $count=1;
-                        $qus=0;
-                        foreach ($pros as $pro) {
-                            $qus=$pro['quenity'];
+                        foreach ($departs as $depart) {
                             echo '
                             <tr>
                             <td>'.$count.'</td>
-                             <td>'.$pro['title'].'</td>
-                               <td>'.$pro['quenity'].'</td>
-                                 <td>'.$pro['price'].'</td>
-                                   <td>'.$pro['id_types'].'</td>
-                                    <td><a href="'.$pro['file_path'].'" class="btn btn-info">فتح</a></td>
-                                
-                             <td><a href="produ.php?id_del='.$pro['id'].'" class="btn badge-danger">حذف </a></td>
-                             
-                            
-
-
+                             <td>'.$depart['title'].'</td>
+                               <td>'.$depart['descrip'].'</td>
+                                 <td><a href="'.$depart['file_path'].'">عرض</a></td>
+                             <td><a href="contact.php?id_del='.$depart['id'].'" class="btn badge-danger">حذف </a></td>
+</tr>
                             ';
-
-
-
                         }
-                        //                                 <td><a href="edit.php?id='.$pro['id'].'" class="btn badge-info" data-toggle="modal" data-target="#exampleModal">تعديل </a></td>
                         ?>
                         </tbody>
                     </table>

@@ -79,7 +79,7 @@ if(isset($_POST['sub'])){
                 </li>
 
                 <li class="nav-item">
-                    <a href="" class="nav-link">تسجيل خروج</a>
+                    <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
             </ul>
         </div>

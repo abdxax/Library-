@@ -58,6 +58,37 @@ $log->login($user,$pass);
 
                 <div class="text-center">
                     <h2>المكتبة الالكترونية </h2>
+
+                    <?php
+
+                    if(isset($_GET['msg'])){
+                        if($_GET['msg']=='error_us'){
+                            echo '
+            <div class="alert alert-danger text-center">
+معرف المستخدم او كلمة المرور غير صحيحه
+</div>
+            ';
+
+                        }
+                        else if($_GET['msg']=='done_re'){
+                            echo '
+            <div class="alert alert-danager text-center">
+             تم التسجيل بنجاح 
+</div>
+            ';
+
+                        }
+                        else if($_GET['msg']=='error_lo'){
+                            echo '
+            <div class="alert alert-danger text-center">
+الرقم الوظيفي مستخدم
+</div>
+            ';
+                        }
+                    }
+                    ?>
+
+                    
                 </div>
 
                    <div class="row justify-content-center">

@@ -53,4 +53,24 @@ class Student extends DB{
         return $sql;
     }
 
+    public function getAllContact($id){
+        $sql=$this->student_db->prepare("SELECT * FROM pdf WHERE cols_id=?");
+        $sql->execute(array($id));
+        return $sql;
+    }
+
+    public function getCol($id){
+        $sql=$this->student_db->prepare("SELECT * FROM info WHERE user_id=?");
+        $sql->execute(array($id));
+        foreach ($sql as $s){
+            return $s['college'];
+        }
+    }
+
+    public function getName($id){
+        $sql=$this->student_db->prepare("SELECT * FROM info WHERE user_id=?");
+        $sql->execute(array($id));
+        return $sql;
+    }
+
 }
