@@ -95,29 +95,9 @@ $info=$student->getName($_SESSION['user']);
                   }
                  ?>
              </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>kkkk</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>kkkk</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <p>kkkk</p>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="cv"></div>
 
             </div>

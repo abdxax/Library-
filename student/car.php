@@ -33,24 +33,6 @@ $prods=$student->getCar($_SESSION['user']);
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-
-            <li class="nav-item dropdown">
-
-
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    حسابي
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-
-        </ul>
 
     </div>
 </nav><!-- end nav-->
@@ -83,9 +65,6 @@ $prods=$student->getCar($_SESSION['user']);
                 </li>
 
 
-                <li class="nav-item">
-                    <a href="contact.php" class="nav-link">المحتوى</a>
-                </li>
 
 
                 <li class="nav-item">

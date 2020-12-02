@@ -5,8 +5,18 @@ $adm=new Admin();
 $departs=$adm->getAllDep();
 if(isset($_POST['sub'])){
     $dep=$_POST['dep'];
-    $adm->addNewDepart($dep);
+    if(!empty($dep)){
+        $adm->addNewDepart($dep);
+    }
+
+
 }
+
+if(isset($_GET['del'])){
+    $adm->deletedep($_GET['del']);
+}
+
+
 ?>
 <html>
 <head>
@@ -36,24 +46,6 @@ if(isset($_POST['sub'])){
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-
-            <li class="nav-item dropdown">
-
-
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    حسابي
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-
-        </ul>
 
     </div>
 </nav><!-- end nav-->
@@ -79,6 +71,15 @@ if(isset($_POST['sub'])){
                 </li>
 
                 <li class="nav-item">
+                    <a href="contact.php" class="nav-link">المحتوى</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="addColloeg.php" class="nav-link">الكليات</a>
+                </li>
+
+
+                <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
             </ul>
@@ -96,6 +97,15 @@ if(isset($_POST['sub'])){
 تم اضافة القسم بنجاح 
 </div>';
                 }
+
+
+                if(isset($_GET['msg_er'])){
+                    echo '<div class="col-12 alert alert-success text-center">
+تم حذف القسم بنجاح 
+</div>';
+                }
+
+
                 ?>
                   <div class="col-6">
                       <form method="post">
@@ -129,7 +139,7 @@ if(isset($_POST['sub'])){
                             <tr>
                             <td>'.$count.'</td>
                              <td>'.$depart['dep_name'].'</td>
-                             <td><a href="" class="btn badge-danger">حذف </a></td>
+                             <td><a href="depart.php?del='.$depart['id'].'" class="btn badge-danger">حذف </a></td>
 </tr>
                             ';
                         }

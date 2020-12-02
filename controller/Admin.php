@@ -23,7 +23,7 @@ class Admin extends DB{
     public function deletedep($id){
         $sql=$this->db_admin->prepare("DELETE FROM departemnt WHERE id=?");
         if($sql->execute(array($id))){
-
+            header('location:depart.php?msg_er=don');
         }
     }
 
@@ -92,6 +92,33 @@ class Admin extends DB{
         $sql=$this->db_admin->prepare("UPDATE bill SET totalpay=?,residual=? WHERE id=?");
         if($sql->execute(array($pay,$reu,$id))){
             header("location:orders.php");
+        }
+    }
+
+    public function getContact(){
+        $sql=$this->db_admin->prepare("SELECT * FROM pdf LEFT JOIN  colloeg_dep ON pdf.cols_id=colloeg_dep.id");
+        $sql->execute();
+        return $sql ;
+    }
+
+
+    public function addNewColl($name){
+        $sql=$this->db_admin->prepare("INSERT INTO colloeg_dep(name_col)VALUES (?)");
+        if($sql->execute(array($name))){
+            header("location:addColloeg.php?msg=don");
+        }
+    }
+
+    public function getAllCol(){
+        $sql=$this->db_admin->prepare("SELECT * FROM colloeg_dep");
+        $sql->execute();
+        return $sql;
+    }
+
+    public function deleteCol($id){
+        $sql=$this->db_admin->prepare("DELETE FROM colloeg_dep WHERE id=?");
+        if($sql->execute(array($id))){
+          header("location:addColloeg.php?msg_er=don");
         }
     }
 

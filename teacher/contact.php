@@ -12,11 +12,15 @@ if(isset($_FILES['pro_file'])){
     $fname=$_FILES['pro_file']['name'];
     $ftm=$_FILES['pro_file']['tmp_name'];
     $path="../pdfs/".$fname;
-    if(move_uploaded_file($ftm,$path)){
-        echo "done";
+    if(!empty($pro_name)){
+        if(move_uploaded_file($ftm,$path)){
+            $adm->addContact($_SESSION['user'],$path,$adm->getCol($_SESSION['user']),$pro_name,$pro_qua);
+            echo "done";
+        }
     }
+
     //$dep=$_POST['dep'];
-    $adm->addContact($_SESSION['user'],$path,$adm->getCol($_SESSION['user']),$pro_name,$pro_qua);
+
 }
 
 if(isset($_GET['id_del'])){
@@ -138,6 +142,7 @@ if(isset($_GET['id_del'])){
                             <th></th>
                             <th>العنوان</th>
                             <th>الوصف</th>
+
                             <th>المحتوى</th>
                             <th>حذف</th>
                         </tr>
@@ -151,6 +156,7 @@ if(isset($_GET['id_del'])){
                             <td>'.$count.'</td>
                              <td>'.$depart['title'].'</td>
                                <td>'.$depart['descrip'].'</td>
+                              
                                  <td><a href="'.$depart['file_path'].'">عرض</a></td>
                              <td><a href="contact.php?id_del='.$depart['id'].'" class="btn badge-danger">حذف </a></td>
 </tr>
