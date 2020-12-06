@@ -86,6 +86,28 @@ if(isset($_GET['id_del'])){
                     <a href="index.php" class="nav-link">الصفحة الرئيسية</a>
                 </li>
 
+                <?php
+                foreach ($dep as $d){
+                    echo '
+                          <li class="nav-item">
+                    <a href="produ.php?id='.$d['id'].'" class="nav-link">'.$d['dep_name'].'</a>
+                </li>
+                      ';
+                }
+                ?>
+
+
+                <li class="nav-item">
+                    <a href="myorder.php" class="nav-link">طلباتي</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="car.php" class="nav-link">االسلة</a>
+                </li>
+
+
+
+
                 <li class="nav-item">
                     <a href="contact.php" class="nav-link">رفع محتوى</a>
                 </li>

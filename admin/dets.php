@@ -5,7 +5,11 @@ $orders=$adm->getProduect($_GET['id']);
 $orders_pay=$adm->getPayWay($_GET['id']);
 $id_bill=$_GET['id'];
 if(isset($_GET['id_bil'])){
-    $adm->updataeOrdr($_GET['id_bil']);
+    $adm->updataeOrdr($_GET['id_bil'],'done');
+}
+
+if(isset($_GET['id_bil_done'])){
+    $adm->updataeOrdr($_GET['id_bil_done'],'deliver');
 }
 
 if(isset($_POST['sub-pay'])){
@@ -118,7 +122,7 @@ if(isset($_POST['sub-pay'])){
                     ?>
                     </tbody>
                     <?php
-                    if($orders_status!="done") {
+                    if($orders_status!="done"&& $orders_status!="deliver") {
                         ?>
                         <div>
                             <a href="dets.php?id_bil=<?php echo $id_bill; ?>">جاهزه للتسليم </a>
@@ -126,7 +130,11 @@ if(isset($_POST['sub-pay'])){
                         <?php
 
                     }
-                    else {
+                    else  if( $orders_status!="deliver"){
+
+                        ?>
+                        <a href="dets.php?id_bil_done=<?php echo $id_bill; ?>">تم التسليم</a>
+                    <?php
                          $pay_way='';
                          $total=0;
                          $payed=0;
@@ -138,28 +146,29 @@ if(isset($_POST['sub-pay'])){
                         }
                         if($pay_way==1) {
 
+                              if($total!=$payed) {
+                                  ?>
 
-                            ?>
+                                  <div class="col-8 text-center">
+                                      <p>الحساب</p>
+                                      <p><?php echo $total - $payed; ?></p>
+                                      <form method="post">
+                                          <div class="form-group">
+                                              <div class="col-4">
+                                                  <input type="text" name="pays" class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <div class="col-4">
+                                                  <input type="submit" name="sub-pay" class="btn btn-info" value="دفع">
+                                              </div>
+                                          </div>
 
-                             <div class="col-8 text-center">
-                                 <p>الحساب</p>
-                                 <p><?php echo $total-$payed;?></p>
-                                 <form method="post">
-                                   <div class="form-group">
-                                       <div class="col-4">
-                                           <input type="text" name="pays" class="form-control">
-                                       </div>
-                                   </div>
-                                     <div class="form-group">
-                                         <div class="col-4">
-                                             <input type="submit" name="sub-pay" class="btn btn-info" value="دفع">
-                                         </div>
-                                     </div>
+                                      </form>
+                                  </div>
 
-                                 </form>
-                             </div>
-
-                            <?php
+                                  <?php
+                              }
                         }
                     }
                     ?>

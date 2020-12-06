@@ -71,11 +71,12 @@ class Admin extends DB{
 
     }
 
-    public function updataeOrdr($id){
-        $sql=$this->db_admin->prepare("UPDATE bill SET status=? WHERE id=?");
-        if($sql->execute(array("done",$id))){
+    public function updataeOrdr($id,$stu){
+        $date_ar=date("Y-m-d");
+        $sql=$this->db_admin->prepare("UPDATE bill SET status=?,date_arv=? WHERE id=?");
+        if($sql->execute(array($stu,$date_ar,$id))){
             $sql_car=$this->db_admin->prepare("UPDATE car SET status=? WHERE bill_id=?");
-            if($sql_car->execute(array("done",$id))){
+            if($sql_car->execute(array($stu,$id))){
                 header("location:dets.php?id=".$id."");
             }
         }
@@ -120,6 +121,12 @@ class Admin extends DB{
         if($sql->execute(array($id))){
           header("location:addColloeg.php?msg_er=don");
         }
+    }
+
+    public function getCountNeworder(){
+        $sql=$this->db_admin->prepare("SELECT * FROM bill WHERE status=?");
+        $sql->execute(array('newOrder'));
+        return $sql->rowCount();
     }
 
 

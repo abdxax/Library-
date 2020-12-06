@@ -100,6 +100,7 @@ table{
                     <tr>
                         <th></th>
                         <th>رقم الطلبية</th>
+                        <th>الرقم الوظيفي</th>
                         <th>الحالة</th>
                         <th>السعر</th>
                         <th>طريقة الدفع </th>
@@ -129,6 +130,7 @@ table{
                         <tr>
                          <td></td>
                          <td>'.$ord['id'].'</td>
+                         <td>'.$ord['email'].'</td>
                          <td>'.$stu.'</td>
                          <td>'.$ord['total'].'</td>
                          <td>'.$pay.'</td>

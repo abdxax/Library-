@@ -1,9 +1,29 @@
 <?php
 session_start();
 require '../controller/student.php';
+
 $student=new Student();
 $dep=$student->getAllDep();
-$orders=$student->getOrder($_SESSION['user']);
+
+$total=$_POST['total'];
+
+    if($_POST['paywah']==1){
+     $total=$_POST['total'];
+
+     $id=$student->createBill($total,'1',$total,$_SESSION['user'],'0');
+     echo $id;
+    }
+
+    if(isset($_POST['sub'])){
+        $total=$_POST['total'];
+
+
+        $id=$student->createBill($total,'2','0',$_SESSION['user'],$total);
+        echo $id;
+    }
+
+
+
 ?>
 <html>
 <head>
@@ -66,6 +86,11 @@ $orders=$student->getOrder($_SESSION['user']);
                 </li>
 
                 <li class="nav-item">
+                    <a href="contact.php" class="nav-link">رفع محتوى</a>
+                </li>
+
+
+                <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
 
@@ -77,48 +102,37 @@ $orders=$student->getOrder($_SESSION['user']);
     <div class="contcat">
 
         <div class="container">
-            <div class="row">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>رقم الطلبية</th>
-                        <th>تاريخ الطلب</th>
-                        <th>الحالة</th>
-                        <th>تاريخ الاستلام</th>
-                        <th>السعر</th>
-                       <!-- <th>التفاصيل </th>-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+            <div class="row justify-content-center">
 
-                     foreach ($orders as $ord){
-                         $stu='';
-                         if($ord['status']=='newOrder'||$ord['status']==''){
-                             $stu='تحت التنفيذ';
-                         }
-                         else if($ord['status']=='deliver'){
-                              $stu="تم التسليم ";
-                         }
-                         else{
-                             $stu="جاهز للاستلام ";
-                         }
-                         echo '
-                        <tr>
-                         <td></td>
-                         <td>'.$ord['id'].'</td>
-                         <td>'.$ord['date_req'].'</td>
-                         <td>'.$stu.'</td>
-                         <td>'.$ord['date_arv'].'</td>
-                         <td>'.$ord['total'].'</td>
-</tr>
-                         ';
-                     }
-                    ?>
-                    </tbody>
-                </table>
-                
+                <div class="col-6">
+                    <form method="post">
+                        <input type="hidden" name="total" value=<?php echo $total;?>>
+                        <input type="hidden" name="payway" value="2">
+                        <div class="form-group col-6">
+                            <input type="text" name="name" class="form-control" placeholder="الاسم">
+                        </div>
+                        <div class="form-group col-6">
+                            <input type="text" name="numb" class="form-control" placeholder="رقم البطاقة">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <input type="text" name="exp" class="form-control" placeholder="mm/yy">
+                                </div>
+                                <div class="form-group col-3">
+                                    <input type="text" name="ccv" class="form-control" placeholder="ccv">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <input type="submit" name="sub" class="btn btn-info" value="دفع">
+                        </div>
+
+
+                    </form>
+                </div>
+
                 <div class="cv"></div>
 
             </div>

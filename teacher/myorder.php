@@ -66,6 +66,10 @@ $orders=$student->getOrder($_SESSION['user']);
                 </li>
 
                 <li class="nav-item">
+                    <a href="contact.php" class="nav-link">رفع محتوى</a>
+                </li>
+
+                <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
 

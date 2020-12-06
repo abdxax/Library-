@@ -14,6 +14,10 @@ if(isset($_POST['subsa'])){
         header("location:produ.php?id=".$id_page."");
     }
 }
+
+if(isset($_POST['sub'])){
+    $produ=$student->getProd(0,$_POST['ser']);
+}
 ?>
 <html>
 <head>
@@ -91,6 +95,23 @@ if(isset($_POST['subsa'])){
 
         <div class="container">
             <div class="row">
+                <div class="col-md-12">
+                    <form method="post">
+                       <div class="col-md-4">
+                           <div class="form-group">
+                               <input type="text" name="ser" class="form-control" placeholder="بحث عن كتاب ">
+                           </div>
+                       </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group text-center">
+                                <input type="submit" name="sub" class="btn btn-info" value="بحث">
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
                 <?php
 
                 foreach ($produ as $p){

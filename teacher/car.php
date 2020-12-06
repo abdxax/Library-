@@ -3,7 +3,7 @@ session_start();
 require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
-$orders=$student->getOrder($_SESSION['user']);
+$prods=$student->getCar($_SESSION['user']);
 ?>
 <html>
 <head>
@@ -33,7 +33,6 @@ $orders=$student->getOrder($_SESSION['user']);
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
 
     </div>
 </nav><!-- end nav-->
@@ -66,6 +65,11 @@ $orders=$student->getOrder($_SESSION['user']);
                 </li>
 
                 <li class="nav-item">
+                    <a href="contact.php" class="nav-link">رفع محتوى</a>
+                </li>
+
+
+                <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
 
@@ -78,47 +82,57 @@ $orders=$student->getOrder($_SESSION['user']);
 
         <div class="container">
             <div class="row">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>رقم الطلبية</th>
-                        <th>تاريخ الطلب</th>
-                        <th>الحالة</th>
-                        <th>تاريخ الاستلام</th>
-                        <th>السعر</th>
-                       <!-- <th>التفاصيل </th>-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
 
-                     foreach ($orders as $ord){
-                         $stu='';
-                         if($ord['status']=='newOrder'||$ord['status']==''){
-                             $stu='تحت التنفيذ';
-                         }
-                         else if($ord['status']=='deliver'){
-                              $stu="تم التسليم ";
-                         }
-                         else{
-                             $stu="جاهز للاستلام ";
-                         }
-                         echo '
-                        <tr>
-                         <td></td>
-                         <td>'.$ord['id'].'</td>
-                         <td>'.$ord['date_req'].'</td>
-                         <td>'.$stu.'</td>
-                         <td>'.$ord['date_arv'].'</td>
-                         <td>'.$ord['total'].'</td>
-</tr>
-                         ';
-                     }
-                    ?>
-                    </tbody>
-                </table>
-                
+              <div class="col-10 text-center">
+                  <table class="table">
+                      <thead>
+                      <tr>
+                       <th></th>
+                          <th>الصنف</th>
+                          <th>الكمية</th>
+                          <th>السعر</th>
+                          <th>الاجمالي</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <?php
+                      $count=1;
+                      $total=0;
+                      foreach ($prods as $p){
+                          $total+=$p['price']*$p['qu'];
+                          echo '
+                          <tr>
+                          <td>'.$count.'</td>
+                          <td>'.$p['title'].'</td> 
+                          <td>'.$p['qu'].'</td>
+                          <td>'.$p['price'].'</td>
+                          <td>'.$p['price']*$p['qu'].'</td>
+                           </tr>
+                          ';
+
+                          $count++;
+                      }
+                      ?>
+                      </tbody>
+                  </table>
+
+                  <form method="post" action="Bill.php">
+                      <?php
+                      echo "الاجمالي : ".$total;
+                      ?>
+                     <div class="form-group">
+                         <input type="hidden" value="<?php echo $total;?>" name="total">
+                        الدفع عند الاستلام <input type="radio" name="paywah" value="1"><br>
+                        الدفع اون لاين  <input type="radio" name="paywah" value="2"><br>
+                     </div>
+                      <div class="form-group">
+                         <input type="submit" name="sub-pay" class="btn btn-info" value="اكمال الدفع ">
+                      </div>
+                  </form>
+              </div>
+
+
+
                 <div class="cv"></div>
 
             </div>

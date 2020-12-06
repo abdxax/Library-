@@ -3,7 +3,21 @@ session_start();
 require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
-$orders=$student->getOrder($_SESSION['user']);
+$produ=$student->getProd($_GET['id']);
+$id_page=$_GET['id'];
+
+if(isset($_POST['subsa'])){
+    $qu=$_POST['que'];
+    $id_cont=$_POST['id'];
+    $msg=$student->addToCar($_SESSION['user'],$id_cont,$qu);
+    if($msg=="done"){
+        header("location:produ.php?id=".$id_page."");
+    }
+}
+
+if(isset($_POST['sub'])){
+    $produ=$student->getProd(0,$_POST['ser']);
+}
 ?>
 <html>
 <head>
@@ -50,6 +64,7 @@ $orders=$student->getOrder($_SESSION['user']);
                 foreach ($dep as $d){
                     echo '
                           <li class="nav-item">
+                          
                     <a href="produ.php?id='.$d['id'].'" class="nav-link">'.$d['dep_name'].'</a>
                 </li>
                       ';
@@ -66,6 +81,10 @@ $orders=$student->getOrder($_SESSION['user']);
                 </li>
 
                 <li class="nav-item">
+                    <a href="contact.php" class="nav-link">رفع محتوى</a>
+                </li>
+
+                <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>
                 </li>
 
@@ -78,47 +97,65 @@ $orders=$student->getOrder($_SESSION['user']);
 
         <div class="container">
             <div class="row">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>رقم الطلبية</th>
-                        <th>تاريخ الطلب</th>
-                        <th>الحالة</th>
-                        <th>تاريخ الاستلام</th>
-                        <th>السعر</th>
-                       <!-- <th>التفاصيل </th>-->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                <div class="col-md-12">
+                    <form method="post">
+                       <div class="col-md-4">
+                           <div class="form-group">
+                               <input type="text" name="ser" class="form-control" placeholder="بحث عن كتاب ">
+                           </div>
+                       </div>
 
-                     foreach ($orders as $ord){
-                         $stu='';
-                         if($ord['status']=='newOrder'||$ord['status']==''){
-                             $stu='تحت التنفيذ';
-                         }
-                         else if($ord['status']=='deliver'){
-                              $stu="تم التسليم ";
-                         }
-                         else{
-                             $stu="جاهز للاستلام ";
-                         }
-                         echo '
-                        <tr>
-                         <td></td>
-                         <td>'.$ord['id'].'</td>
-                         <td>'.$ord['date_req'].'</td>
-                         <td>'.$stu.'</td>
-                         <td>'.$ord['date_arv'].'</td>
-                         <td>'.$ord['total'].'</td>
-</tr>
-                         ';
-                     }
-                    ?>
-                    </tbody>
-                </table>
-                
+                        <div class="col-md-4">
+                            <div class="form-group text-center">
+                                <input type="submit" name="sub" class="btn btn-info" value="بحث">
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+                <?php
+
+                foreach ($produ as $p){
+                    echo '
+                     <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img src="'.$p['file_path'].'" width="200px" height="200px">
+                            <p>'.$p['title'].'</p>
+                            <p>'.$p['quenity'].'</p>
+                            <p>'.$p['price'].'</p>
+                            <form method="POST" class="">
+                          <div class="form-group">
+                          <div class="row">
+                          <div class="col-3 ">
+                            <input type="number" class="form-control" name="que" value="1" width="30px">
+                            <input type="hidden" name="id" value="'.$p['id'].'">
+                            <input type="hidden" name="page" value="'.$id_page.'">
+</div>
+
+<div class="col-7 text-center">
+                            <input type="submit" class="btn btn-info" name="subsa" value="اضافة الى السلة ">
+</div>
+
+
+</div>
+</div>
+
+ 
+</form>
+                            
+                        </div>
+                    </div>
+                </div>
+                    
+                    ';
+                }
+                ?>
+
+
+
+
                 <div class="cv"></div>
 
             </div>

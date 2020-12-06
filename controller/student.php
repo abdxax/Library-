@@ -14,10 +14,18 @@ class Student extends DB{
         return $sql;
     }
 
-    public function getProd($id){
-        $sql=$this->student_db->prepare("SELECT * FROM contact WHERE id_types=?");
-        $sql->execute(array($id));
-        return $sql;
+    public function getProd($id=0,$ser=''){
+        if($ser!=''){
+            $sql=$this->student_db->prepare("SELECT * FROM contact WHERE title=?");
+            $sql->execute(array($ser));
+            return $sql;
+        }
+        else{
+            $sql=$this->student_db->prepare("SELECT * FROM contact WHERE id_types=?");
+            $sql->execute(array($id));
+            return $sql;
+        }
+
     }
 
     public function addToCar($id,$cont_id,$qu){
@@ -34,8 +42,9 @@ class Student extends DB{
     }
 
     public function createBill($total,$payway,$rad,$user,$totalpay){
-        $sql=$this->student_db->prepare("INSERT INTO bill (total,payway,residual,email,totalpay,status) VALUES (?,?,?,?,?,?)");
-        $sql->execute(array($total,$payway,$rad,$user,$totalpay,"newOrder"));
+        $dat=date("Y-m-d");
+        $sql=$this->student_db->prepare("INSERT INTO bill (total,payway,residual,email,totalpay,status,date_req) VALUES (?,?,?,?,?,?,?)");
+        $sql->execute(array($total,$payway,$rad,$user,$totalpay,"newOrder",$dat));
 
         $last_id=$this->student_db->lastInsertId();
         $sql_update=$this->student_db->prepare("UPDATE car SET status=? , bill_id=? WHERE email=? AND status=?");
