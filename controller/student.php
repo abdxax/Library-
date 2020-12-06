@@ -82,4 +82,23 @@ class Student extends DB{
         return $sql;
     }
 
+    public function getCountNeworder(){
+        $sql=$this->student_db->prepare("SELECT * FROM bill WHERE status=?");
+        $sql->execute(array('newOrder'));
+        return $sql->rowCount();
+    }
+
+    public function getCountDoneorder(){
+        $sql=$this->student_db->prepare("SELECT * FROM bill WHERE status=?");
+        $sql->execute(array('done'));
+        return $sql->rowCount();
+    }
+
+
+    public function getCountDelivorder(){
+        $sql=$this->student_db->prepare("SELECT * FROM bill WHERE status=?");
+        $sql->execute(array('deliver'));
+        return $sql->rowCount();
+    }
+
 }

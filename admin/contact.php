@@ -4,7 +4,10 @@ require "../controller/Admin.php";
 $adm=new Admin();
 $dep=$adm->getAllDep();
 $departs2=$adm->getContact();
-
+$drp=$adm->getAllDep();
+if(isset($_GET['id_cou'])){
+$adm->AddPros($_GET['id_cou']);
+}
 ?>
 <html>
 <head>
@@ -110,6 +113,10 @@ $departs2=$adm->getContact();
                                <td>'.$depart['descrip'].'</td>
                                <td>'.$depart['name_col'].'</td>
                                  <td><a href="'.$depart['file_path'].'">عرض</a></td>
+
+<td>
+<a href="contact.php?id_cou='.$depart['title'].'">اضافة</a>
+</td>
 </tr>
                             ';
                         }

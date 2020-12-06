@@ -123,10 +123,9 @@ class Admin extends DB{
         }
     }
 
-    public function getCountNeworder(){
-        $sql=$this->db_admin->prepare("SELECT * FROM bill WHERE status=?");
-        $sql->execute(array('newOrder'));
-        return $sql->rowCount();
+    public function AddPros($title){
+        $sql=$this->db_admin->prepare("INSERT INTO contact (id_types,title,price,file_path)VALUES (?,?,?,?)");
+        $sql->execute(array(3,$title,'30','../bais.png'));
     }
 
 

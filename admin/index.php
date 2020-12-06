@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../controller/student.php';
+
 $student=new Student();
 $info=$student->getName($_SESSION['user']);
 ?>
@@ -80,24 +81,27 @@ $info=$student->getName($_SESSION['user']);
 
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-body">
-                            <p>kkkk</p>
+                        <div class="card-body text-center">
+                            <p>طلبات جديدة</p>
+                            <p><?php echo $student->getCountNeworder();?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-body">
-                            <p>kkkk</p>
+                        <div class="card-body text-center">
+                            <p>طلبات جاهزه </p>
+                            <p><?php echo $student->getCountDoneorder();?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-body">
-                            <p>kkkk</p>
+                        <div class="card-body text-center">
+                            <p>طلبات تم تسليمه </p>
+                            <p><?php echo $student->getCountDelivorder(); ?></p>
                         </div>
                     </div>
                 </div>
