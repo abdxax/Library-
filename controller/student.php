@@ -101,4 +101,24 @@ class Student extends DB{
         return $sql->rowCount();
     }
 
+    public function getAllContacts(){
+        $sql=$this->student_db->prepare("SELECT * FROM contact ");
+        $sql->execute();
+        return $sql;
+    }
+
+    public function Delcar($id){
+        $sql=$this->student_db->prepare("DELETE FROM car WHERE id_car=? ");
+        if($sql->execute(array($id))){
+           header("location:car.php");
+           // return "oo";
+        }
+        else{
+            echo "l";
+        }
+
+    }
+
+
+
 }

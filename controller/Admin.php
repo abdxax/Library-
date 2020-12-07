@@ -56,10 +56,14 @@ class Admin extends DB{
             return $sql;
         }
         else if($ids==1){
-
+            $sql=$this->db_admin->prepare("SELECT * FROM bill WHERE status=?");
+            $sql->execute(array('newOrder'));
+            return $sql;
         }
         else if ($ids==2){
-
+            $sql=$this->db_admin->prepare("SELECT * FROM bill WHERE status=?");
+            $sql->execute(array('done'));
+            return $sql;
         }
     }
 

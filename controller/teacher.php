@@ -37,4 +37,10 @@ class teacher extends DB
             header("location:contact.php");
         }
     }
+
+    public function getAllContacts(){
+        $sql=$this->student_db->prepare("SELECT * FROM contact ");
+        $sql->execute();
+        return $sql;
+    }
 }

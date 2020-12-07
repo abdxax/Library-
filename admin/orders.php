@@ -2,6 +2,10 @@
 require '../controller/Admin.php';
 $adm=new Admin();
 $orders=$adm->getorders();
+if(isset($_POST['sub'])){
+    $ids=$_POST['stu'];
+    $orders=$adm->getorders($ids);
+}
 ?>
 <html>
 <head>
@@ -78,19 +82,19 @@ table{
         <div class="container">
             <div class="row justify-content-center">
                 <div>
-                    <form>
+                    <form method="post">
 
                         <div class="form-group">
                             <div class="col-12">
                                 <select name="stu" class="form-control">
-                                    <option>جديد</option>
-                                    <option>جاهز للتسليم</option>
-                                    <option>ديون</option>
+                                    <option value="1">جديد</option>
+                                    <option value="2">جاهز للتسليم</option>
+
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-info btn-block" value="بحث ">
+                            <input type="submit" name="sub" class="btn btn-info btn-block" value="بحث ">
                         </div>
 
                     </form>
@@ -104,6 +108,7 @@ table{
                         <th>الحالة</th>
                         <th>السعر</th>
                         <th>طريقة الدفع </th>
+                        <th>المتبقي</th>
                        <th>التفاصيل </th>
                     </tr>
                     </thead>
@@ -111,11 +116,17 @@ table{
                     <?php
 
                     foreach ($orders as $ord){
+                        $total=$ord['total'];
+                        $pay=$ord['totalpay'];
+                        $ps=$total-$pay;
                         $stu='';
                         $pay='';
 
                         if($ord['status']=='newOrder'||$ord['status']==''){
                             $stu='جديد';
+                        }
+                        else if($ord['status']=='deliver'){
+                            $stu='تم التسليم';
                         }
                         else{
                             $stu="جاهز للاستلام ";
@@ -134,6 +145,7 @@ table{
                          <td>'.$stu.'</td>
                          <td>'.$ord['total'].'</td>
                          <td>'.$pay.'</td>
+                         <td>'.$ps.'</td>
                          <td><a href="dets.php?id='.$ord['id'].'" class="btn btn-info">عرض الطلب </a> </td>
 </tr>
                          ';

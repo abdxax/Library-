@@ -21,10 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/dets.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/orders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student/car.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/car.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/student/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/car.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/car.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +120,9 @@
       <workItem from="1607248727921" duration="17000" />
       <workItem from="1607273616249" duration="2179000" />
       <workItem from="1607275930601" duration="2000" />
+      <workItem from="1607281719932" duration="11000" />
+      <workItem from="1607285787443" duration="22000" />
+      <workItem from="1607369223104" duration="4439000" />
     </task>
     <servers />
   </component>
@@ -145,9 +154,9 @@
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.813@0.23.1440.813" timestamp="1604258592187" />
     <state x="539" y="360" key="NewPhpFileDialog/0.23.1440.814@0.23.1440.814" timestamp="1604243553623" />
     <state x="539" y="361" key="NewPhpFileDialog/0.23.1440.816@0.23.1440.816" timestamp="1605218983288" />
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1607273618604">
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1607285792440">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1607273618604" />
+    <state x="337" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1607285792440" />
   </component>
 </project>

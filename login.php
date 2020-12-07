@@ -12,7 +12,9 @@ if(isset($_POST['sub'])){
     $password=strip_tags($_POST['password']);
     $typ=strip_tags($_POST['typ']);
     $cols=$_POST['cols'];
-    $log->register($name,$id_job,$email,$phone,$password,$typ,$cols);
+    if(!empty($name)&&!empty($id_job)&&!empty($email)&&!empty($password)&&!empty($phone)) {
+        $log->register($name, $id_job, $email, $phone, $password, $typ, $cols);
+    }
 
 }
 
@@ -96,13 +98,13 @@ $log->login($user,$pass);
                        <form class="" method="post">
                            <div class="form-group ">
                                <label>
-                                   <input type="text" class="form-control text-center"  name="id" placeholder="معرف المستخدم">
+                                   <input type="text" class="form-control text-center"  name="id" placeholder="معرف المستخدم" required>
                                </label>
                            </div>
 
                            <div class="form-group ">
                                <label>
-                                   <input type="password" class="form-control text-center"  name="pass" placeholder="كلمة المرور ">
+                                   <input type="password" class="form-control text-center"  name="pass" placeholder="كلمة المرور " required>
                                </label>
                            </div>
 
@@ -137,10 +139,10 @@ $log->login($user,$pass);
             <div class="modal-body">
                <form method="post">
                    <div class="form-group">
-                       <input type="text" name="name" class="form-control" placeholder="الاسم">
+                       <input type="text" name="name" class="form-control" placeholder="الاسم" required>
                    </div>
                    <div class="form-group">
-                       <input type="text" name="id_job" class="form-control"  placeholder="الرقم الوظيفي او الرقم الجامعي">
+                       <input type="text" name="id_job" class="form-control"  placeholder="الرقم الوظيفي او الرقم الجامعي" required>
                    </div>
                    <div class="form-group">
                        <select class="form-control" name="cols">
@@ -155,13 +157,13 @@ $log->login($user,$pass);
                        </select>
                    </div>
                    <div class="form-group">
-                       <input type="text" class="form-control" name="email"  placeholder="البريد الالكتروني">
+                       <input type="text" class="form-control" name="email"  placeholder="البريد الالكتروني" required>
                    </div>
                    <div class="form-group">
-                       <input type="text" name="phone" class="form-control"  placeholder="رقم التواصل">
+                       <input type="text" name="phone" class="form-control"  placeholder="رقم التواصل" required>
                    </div>
                    <div class="form-group">
-                       <input type="text" name="password" class="form-control"  placeholder="كلمة المرور">
+                       <input type="password" name="password" class="form-control"  placeholder="كلمة المرور" required>
                    </div>
 
                    <div class="form-group" >

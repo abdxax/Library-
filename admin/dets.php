@@ -152,22 +152,27 @@ if(isset($_POST['sub-pay'])){
                                   <div class="col-8 text-center">
                                       <p>الحساب</p>
                                       <p><?php echo $total - $payed; ?></p>
-                                      <form method="post">
-                                          <div class="form-group">
-                                              <div class="col-4">
-                                                  <input type="text" name="pays" class="form-control">
+                                      <?php
+                                      if($payed<=$total) {
+                                          ?>
+                                          <form method="post">
+                                              <div class="form-group">
+                                                  <div class="col-4">
+                                                      <input type="text" name="pays" class="form-control">
+                                                  </div>
                                               </div>
-                                          </div>
-                                          <div class="form-group">
-                                              <div class="col-4">
-                                                  <input type="submit" name="sub-pay" class="btn btn-info" value="دفع">
+                                              <div class="form-group">
+                                                  <div class="col-4">
+                                                      <input type="submit" name="sub-pay" class="btn btn-info"
+                                                             value="دفع">
+                                                  </div>
                                               </div>
+
+                                          </form>
                                           </div>
 
-                                      </form>
-                                  </div>
-
-                                  <?php
+                                          <?php
+                                      }
                               }
                         }
                     }

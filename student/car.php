@@ -4,6 +4,9 @@ require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
 $prods=$student->getCar($_SESSION['user']);
+if(isset($_GET['id_del'])){
+    $student->Delcar($_GET['id_del']);
+}
 ?>
 <html>
 <head>
@@ -105,6 +108,7 @@ $prods=$student->getCar($_SESSION['user']);
                           <td>'.$p['qu'].'</td>
                           <td>'.$p['price'].'</td>
                           <td>'.$p['price']*$p['qu'].'</td>
+                          <td><a href="car.php?id_del='.$p['id_car'].'"class="btn btn-danger">حذف</a> </td>
                            </tr>
                           ';
 

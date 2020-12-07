@@ -4,6 +4,7 @@ require '../controller/student.php';
 $student=new Student();
 $dep=$student->getAllDep();
 $info=$student->getName($_SESSION['user']);
+$contas=$student->getAllContacts();
 ?>
 <html>
 <head>
@@ -104,17 +105,68 @@ $info=$student->getName($_SESSION['user']);
     <div class="contcat">
 
         <div class="container">
-            <div class="row">
-             <div class="text-center">
-                 <?php
-                  foreach ($info as $i){
-                      echo'
+            <div class="row justify-content-center">
+             <div class="text-right">
+                  <div class="card">
+                      <div class="card-body">
+                          <?php
+                          foreach ($info as $i){
+                              echo'
                       <p>الاسم: '.$i['name'].'</p>
                       <p>الرقم الوظيفي : '.$i['user_id'].'</p>
                       ';
-                  }
-                 ?>
+                          }
+                          ?>
+
+                      </div>
+                  </div>
+
              </div>
+
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <h4>المنتجات </h4>
+                    </div>
+                    <div class="col-md-12 row">
+                        <?php
+
+                        foreach ($contas as $p){
+                            echo '
+                     <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img src="'.$p['file_path'].'" width="200px" height="200px">
+                            <p>'.$p['title'].'</p>
+                            <p>'.$p['quenity'].'</p>
+                            <p>'.$p['price'].'</p>
+                            <form method="POST" class="">
+                          <div class="form-group">
+                          <div class="row">
+                          <div class="col-3 ">
+                            <input type="number" class="form-control" name="que" value="1" width="30px">
+                           
+</div>
+
+<div class="col-7 text-center">
+                            <input type="submit" class="btn btn-info" name="subsa" value="اضافة الى السلة ">
+</div>
+
+
+</div>
+</div>
+
+ 
+</form>
+                            
+                        </div>
+                    </div>
+                </div>
+                    
+                    ';
+                        }
+                        ?>
+                    </div>
+                </div>
 
 
 
