@@ -14,7 +14,10 @@ if(isset($_GET['id_bil_done'])){
 
 if(isset($_POST['sub-pay'])){
     $pay=$_POST['pays'];
-    $adm->updatePay($id_bill,$pay,$total);
+    $x=$_POST['total'];
+    $px=$x-$pay;
+
+    $adm->updatePay($id_bill,$pay,$px);
 }
 ?>
 <html>
@@ -121,62 +124,73 @@ if(isset($_POST['sub-pay'])){
                     }
                     ?>
                     </tbody>
-                    <?php
-                    if($orders_status!="done"&& $orders_status!="deliver") {
-                        ?>
-                        <div>
-                            <a href="dets.php?id_bil=<?php echo $id_bill; ?>">جاهزه للتسليم </a>
-                        </div>
+                </table>
+
+                <div class="col-md-12">
+                    <div class="row justify-content-center">
                         <?php
+                        if($orders_status!="done"&& $orders_status!="deliver") {
+                            ?>
+                            <div>
+                                <a href="dets.php?id_bil=<?php echo $id_bill; ?>" class="btn btn-info">جاهزه للتسليم </a>
+                            </div>
+                            <?php
 
-                    }
-                    else  if( $orders_status!="deliver"){
+                        }
+                        else  if( $orders_status!="deliver"){
 
+                            ?>
+                                <div>
+                            <a href="dets.php?id_bil_done=<?php echo $id_bill; ?>" class="btn btn-danger">تم التسليم</a>
+                                </div>
+                            <?php
+                            }
+                            $pay_way='';
+                            $total=0;
+                            $payed=0;
+                            foreach ($orders_pay as $pay){
+                                $pay_way=$pay['payway'];
+                                $total=$pay['total'];
+                                $payed=$pay['totalpay'];
+
+                            }
+                            $pxc=$total-$payed;
+                            if($pay_way==1) {
+
+                                if($total!=$payed) {
+                                    ?>
+
+                                    <div class="col-md-12 text-center">
+                                    <p>الحساب</p>
+                                    <p><?php echo $x=$total - $payed; ?></p>
+                                    <?php
+                                    if($payed<=$total) {
+                                        ?>
+                                        <form method="post">
+                                            <div class="form-group">
+                                                <div class="col-4">
+                                                    <input type="hidden" value="<?php echo $payed;?>" name="total">
+                                                    <input type="text" name="pays" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-4">
+                                                    <input type="submit" name="sub-pay" class="btn btn-info"
+                                                           value="دفع">
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        </div>
+
+                                        <?php
+                                    }
+                                }
+
+                        }
                         ?>
-                        <a href="dets.php?id_bil_done=<?php echo $id_bill; ?>">تم التسليم</a>
-                    <?php
-                         $pay_way='';
-                         $total=0;
-                         $payed=0;
-                        foreach ($orders_pay as $pay){
-                            $pay_way=$pay['payway'];
-                            $total=$pay['total'];
-                            $payed=$pay['totalpay'];
-
-                        }
-                        if($pay_way==1) {
-
-                              if($total!=$payed) {
-                                  ?>
-
-                                  <div class="col-8 text-center">
-                                      <p>الحساب</p>
-                                      <p><?php echo $total - $payed; ?></p>
-                                      <?php
-                                      if($payed<=$total) {
-                                          ?>
-                                          <form method="post">
-                                              <div class="form-group">
-                                                  <div class="col-4">
-                                                      <input type="text" name="pays" class="form-control">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group">
-                                                  <div class="col-4">
-                                                      <input type="submit" name="sub-pay" class="btn btn-info"
-                                                             value="دفع">
-                                                  </div>
-                                              </div>
-
-                                          </form>
-                                          </div>
-
-                                          <?php
-                                      }
-                              }
-                        }
-                    }
-                    ?>
+                    </div>
+                </div>
                     <div class="cv"></div>
 
             </div>
