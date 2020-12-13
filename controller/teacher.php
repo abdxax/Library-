@@ -43,4 +43,10 @@ class teacher extends DB
         $sql->execute();
         return $sql;
     }
+
+    public function getAllDep(){
+        $sql=$this->tech_db->prepare("SELECT * FROM departemnt");
+        $sql->execute();
+        return $sql;
+    }
 }

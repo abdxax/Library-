@@ -97,6 +97,7 @@ $adm->AddPros($_GET['id_cou']);
                             <th></th>
                             <th>العنوان</th>
                             <th>الوصف</th>
+                            <th>عضو هيئة التدريس</th>
                             <th>الكلية</th>
                             <th>المحتوى</th>
 
@@ -111,6 +112,7 @@ $adm->AddPros($_GET['id_cou']);
                             <td>'.$count.'</td>
                              <td>'.$depart['title'].'</td>
                                <td>'.$depart['descrip'].'</td>
+                               <td>'.$adm->getName($depart['user_id']).'</td>
                                <td>'.$depart['name_col'].'</td>
                                  <td><a href="'.$depart['file_path'].'">عرض</a></td>
 

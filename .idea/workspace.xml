@@ -21,8 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f345ba12-0651-4041-ab87-17d4296322fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/addColloeg.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/addColloeg.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/contact.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/depart.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/depart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/dets.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/dets.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/produ.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/produ.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/contact.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +119,7 @@
       <workItem from="1607285787443" duration="22000" />
       <workItem from="1607369223104" duration="4439000" />
       <workItem from="1607687823420" duration="1782000" />
+      <workItem from="1607836954904" duration="5075000" />
     </task>
     <servers />
   </component>

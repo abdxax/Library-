@@ -132,6 +132,17 @@ class Admin extends DB{
         $sql->execute(array(3,$title,'30','../bais.png'));
     }
 
+    public function getName($id){
+        $sql=$this->db_admin->prepare("SELECT * FROM info WHERE user_id=?");
+        $sql->execute(array($id));
+        foreach ($sql as $s){
+            return $s['name'];
+        }
+        //return $sql;
+    }
+
+
+
 
 
 }
