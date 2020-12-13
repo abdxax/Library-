@@ -2,28 +2,11 @@
 session_start();
 require "../controller/Admin.php";
 $adm=new Admin();
-$departs=$adm->getAllDep();
-$pros=$adm->getAllProud();
-$id=$_GET['id'];
-if(isset($_FILES['pro_file'])){
-    print_r($_FILES['pro_file']);
-    $pro_name=$_POST['pro_name'];
-    $pro_qua=$_POST['pro_qua'];
-    $pro_price=$_POST['pro_price'];
-    $pro_type=$_POST['pro_type'];
-
-    $fname=$_FILES['pro_file']['name'];
-    $ftm=$_FILES['pro_file']['tmp_name'];
-    $path="../poster/".$fname;
-    if(move_uploaded_file($ftm,$path)){
-        echo "done";
-    }
-    //$dep=$_POST['dep'];
-    $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
-}
-
-if(isset($_GET['id_del'])){
-    $adm->deletePro($_GET['id_del']);
+$dep=$adm->getAllDep();
+$departs2=$adm->getContact();
+$drp=$adm->getAllDep();
+if(isset($_GET['id_cou'])){
+$adm->AddPros($_GET['id_cou']);
 }
 ?>
 <html>
@@ -54,7 +37,6 @@ if(isset($_GET['id_del'])){
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
 
     </div>
 </nav><!-- end nav-->
@@ -87,9 +69,7 @@ if(isset($_GET['id_del'])){
                     <a href="addColloeg.php" class="nav-link">الكليات</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="users.php" class="nav-link">المستخدمين</a>
-                </li>
+
 
                 <li class="nav-item">
                     <a href="report.php" class="nav-link">التقارير </a>
@@ -111,50 +91,47 @@ if(isset($_GET['id_del'])){
 
                 if(isset($_GET['msg'])){
                     echo '<div class="col-12 alert alert-success text-center">
-تم اضافة المنتج بنجاح 
+تم اضافة القسم بنجاح 
 </div>';
                 }
                 ?>
-                <div class="col-6">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <div class="col-8">
-                                <input type="text" name="pro_name" class="form-control" placeholder="اسم المنتج ">
-                            </div>
 
-                            <div class="col-8">
-                                <input type="text" name="pro_qua" class="form-control" placeholder="الكمية">
-                            </div>
+                <div class="col-10">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>العنوان</th>
+                            <th>الوصف</th>
+                            <th>عضو هيئة التدريس</th>
+                            <th>الكلية</th>
+                            <th>المحتوى</th>
 
-                            <div class="col-8">
-                                <input type="text" name="pro_price" class="form-control" placeholder="السعر">
-                            </div>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $count=1;
+                        foreach ($departs2 as $depart) {
+                            echo '
+                            <tr>
+                            <td>'.$count.'</td>
+                             <td>'.$depart['title'].'</td>
+                               <td>'.$depart['descrip'].'</td>
+                               <td>'.$adm->getName($depart['user_id']).'</td>
+                               <td>'.$depart['name_col'].'</td>
+                                 <td><a href="'.$depart['file_path'].'">عرض</a></td>
 
-                            <div class="col-8">
-                                <select class="form-control" name="pro_type">
-                                    <?php
-                                    foreach ($departs as $depart){
-                                        echo '
-                                       <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
-                                       ';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="col-8">
-                                <input type="file" name="pro_file" class="form-control" placeholder=" ">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-8 text-center">
-                                <input type="submit" name="sub" class="btn btn-info" value="اضافة">
-                            </div>
-                        </div>
-                    </form>
+<td>
+<a href="contact.php?id_cou='.$depart['title'].'">اضافة</a>
+</td>
+</tr>
+                            ';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-
-
                 <div class="cv"></div>
 
             </div>

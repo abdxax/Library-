@@ -4,7 +4,6 @@ require "../controller/Admin.php";
 $adm=new Admin();
 $departs=$adm->getAllDep();
 $pros=$adm->getAllProud();
-$id=$_GET['id'];
 if(isset($_FILES['pro_file'])){
     print_r($_FILES['pro_file']);
     $pro_name=$_POST['pro_name'];
@@ -24,6 +23,11 @@ if(isset($_FILES['pro_file'])){
 
 if(isset($_GET['id_del'])){
     $adm->deletePro($_GET['id_del']);
+}
+
+if(isset($_POST['subs'])){
+    $id_de=$_POST['ids'];
+    $adm->deletePro($id_de);
 }
 ?>
 <html>
@@ -87,9 +91,7 @@ if(isset($_GET['id_del'])){
                     <a href="addColloeg.php" class="nav-link">الكليات</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="users.php" class="nav-link">المستخدمين</a>
-                </li>
+
 
                 <li class="nav-item">
                     <a href="report.php" class="nav-link">التقارير </a>
@@ -134,7 +136,7 @@ if(isset($_GET['id_del'])){
                                 <select class="form-control" name="pro_type">
                                     <?php
                                     foreach ($departs as $depart){
-                                        echo '
+                                       echo '
                                        <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
                                        ';
                                     }
@@ -149,12 +151,92 @@ if(isset($_GET['id_del'])){
                         <div class="form-group">
                             <div class="col-8 text-center">
                                 <input type="submit" name="sub" class="btn btn-info" value="اضافة">
+
                             </div>
                         </div>
                     </form>
                 </div>
 
+                <div class="col-10">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>المنتج</th>
+                            <th>الكمية</th>
+                            <th>السعر</th>
+                            <th>القسم</th>
+                            <th>المرفق</th>
 
+                            <th>حذف</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $count=1;
+                        $qus=0;
+                        $id=0;
+                      foreach ($pros as $pro) {
+
+                            $id=$pro['id'];
+                            $qus=$pro['quenity'];
+                            echo '
+              <tr>
+                            <td>'.$count.'</td>
+                             <td>'.$pro['title'].'</td>
+                               <td>'.$pro['quenity'].'</td>
+                                 <td>'.$pro['price'].'</td>
+                                   <td>'.$pro['id_types'].'</td>
+                                    <td><a href="'.$pro['file_path'].'" class="btn btn-info">فتح</a></td>
+                                
+                           
+                             <td><button id="bust" type="button" class="btn btn-danger xc" data-toggle="modal" data-target="#exampleModal" data-id="'.$pro['id'].'">
+  حذف
+</button>
+
+
+   </tr>
+   
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form method="post">
+       <p class="text-center">هل متاكد من حذف العنصر ؟ </p>
+       <input type="hidden" name="ids" id="ins">
+
+      </div>
+      <div class="modal-footer text-right">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+        <input type="submit" name="subs" class="btn btn-danger" value="حذف">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>              
+                          
+                            
+
+
+                            ';
+
+
+
+
+
+                        }
+
+                        //                                 <td><a href="edit.php?id='.$pro['id'].'" class="btn badge-info" data-toggle="modal" data-target="#exampleModal">تعديل </a></td>
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="cv"></div>
 
             </div>
@@ -171,5 +253,14 @@ if(isset($_GET['id_del'])){
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
+
+<script>
+    $('.xc').click(function (){
+       x=$(this).data('id');
+       $('#ins').val(x);
+
+    });
+
+</script>
 </body>
 </html>

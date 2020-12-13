@@ -2,29 +2,25 @@
 session_start();
 require "../controller/Admin.php";
 $adm=new Admin();
-$departs=$adm->getAllDep();
-$pros=$adm->getAllProud();
-$id=$_GET['id'];
-if(isset($_FILES['pro_file'])){
-    print_r($_FILES['pro_file']);
-    $pro_name=$_POST['pro_name'];
-    $pro_qua=$_POST['pro_qua'];
-    $pro_price=$_POST['pro_price'];
-    $pro_type=$_POST['pro_type'];
-
-    $fname=$_FILES['pro_file']['name'];
-    $ftm=$_FILES['pro_file']['tmp_name'];
-    $path="../poster/".$fname;
-    if(move_uploaded_file($ftm,$path)){
-        echo "done";
-    }
-    //$dep=$_POST['dep'];
-    $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
+$departs=$adm->getAllUser();
+if(isset($_POST['sub'])){
+    $name=$_POST['name'];
+    $id=$_POST['job'];
+    $pass=$_POST['pass'];
+    $phone=$_POST['phone'];
+    $email=$_POST['email'];
+    $adm->addUser($name,$id,$pass,$phone,$email);
 }
 
-if(isset($_GET['id_del'])){
-    $adm->deletePro($_GET['id_del']);
+if(isset($_GET['del'])){
+    $adm->deleteCol($_GET['del']);
 }
+
+if(isset($_POST['subs'])){
+    $id_de=$_POST['ids'];
+    $adm->deleteUser($id_de);
+}
+
 ?>
 <html>
 <head>
@@ -54,7 +50,6 @@ if(isset($_GET['id_del'])){
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
 
     </div>
 </nav><!-- end nav-->
@@ -111,40 +106,40 @@ if(isset($_GET['id_del'])){
 
                 if(isset($_GET['msg'])){
                     echo '<div class="col-12 alert alert-success text-center">
-تم اضافة المنتج بنجاح 
+تم اضافة الكلية بنجاح 
+</div>';
+                }
+                if(isset($_GET['msg_er'])){
+                    echo '<div class="col-12 alert alert-success text-center">
+تم حذف الكلية بنجاح 
 </div>';
                 }
                 ?>
                 <div class="col-6">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post">
                         <div class="form-group">
                             <div class="col-8">
-                                <input type="text" name="pro_name" class="form-control" placeholder="اسم المنتج ">
+                                <input type="text" name="name" class="form-control" placeholder="الاسم ">
                             </div>
 
                             <div class="col-8">
-                                <input type="text" name="pro_qua" class="form-control" placeholder="الكمية">
+                                <input type="text" name="job" class="form-control" placeholder="الرقم الوظيفي ">
                             </div>
 
                             <div class="col-8">
-                                <input type="text" name="pro_price" class="form-control" placeholder="السعر">
+                                <input type="email" name="email" class="form-control" placeholder="البريد الالكتروني">
                             </div>
 
                             <div class="col-8">
-                                <select class="form-control" name="pro_type">
-                                    <?php
-                                    foreach ($departs as $depart){
-                                        echo '
-                                       <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
-                                       ';
-                                    }
-                                    ?>
-                                </select>
+                                <input type="password" name="pass" class="form-control" placeholder="كلمة المرور">
                             </div>
 
                             <div class="col-8">
-                                <input type="file" name="pro_file" class="form-control" placeholder=" ">
+                                <input type="text" name="phone" class="form-control" placeholder=" رقم التواصل">
                             </div>
+
+
+
                         </div>
                         <div class="form-group">
                             <div class="col-8 text-center">
@@ -154,7 +149,58 @@ if(isset($_GET['id_del'])){
                     </form>
                 </div>
 
+                <div class="col-10">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>الاسم</th>
+                            <th>الرقم الوظيفي</th>
+                            <th>حذف</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $count=1;
+                        foreach ($departs as $depart) {
+                            echo '
+                            <tr>
+                            <td>'.$count.'</td>
+                             <td>'.$depart['name'].'</td>
+                              <td>'.$depart['user_id'].'</td>
+                             <td><button id="bust" type="button" class="btn btn-danger xc" data-toggle="modal" data-target="#exampleModal" data-id="'.$depart['userName'].'">حذف</button>
 
+</tr>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form method="post">
+       <p class="text-center">هل متاكد من حذف العنصر ؟ </p>
+       <input type="hidden" name="ids" id="ins">
+
+      </div>
+      <div class="modal-footer text-right">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+        <input type="submit" name="subs" class="btn btn-danger" value="حذف">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>  
+                            ';
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="cv"></div>
 
             </div>
@@ -170,6 +216,13 @@ if(isset($_GET['id_del'])){
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script>
+    $('.xc').click(function (){
+        x=$(this).data('id');
+        $('#ins').val(x);
 
+    });
+
+</script>
 </body>
 </html>

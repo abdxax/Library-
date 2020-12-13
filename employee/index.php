@@ -1,30 +1,9 @@
 <?php
 session_start();
-require "../controller/Admin.php";
-$adm=new Admin();
-$departs=$adm->getAllDep();
-$pros=$adm->getAllProud();
-$id=$_GET['id'];
-if(isset($_FILES['pro_file'])){
-    print_r($_FILES['pro_file']);
-    $pro_name=$_POST['pro_name'];
-    $pro_qua=$_POST['pro_qua'];
-    $pro_price=$_POST['pro_price'];
-    $pro_type=$_POST['pro_type'];
+require '../controller/student.php';
 
-    $fname=$_FILES['pro_file']['name'];
-    $ftm=$_FILES['pro_file']['tmp_name'];
-    $path="../poster/".$fname;
-    if(move_uploaded_file($ftm,$path)){
-        echo "done";
-    }
-    //$dep=$_POST['dep'];
-    $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
-}
-
-if(isset($_GET['id_del'])){
-    $adm->deletePro($_GET['id_del']);
-}
+$student=new Student();
+$info=$student->getName($_SESSION['user']);
 ?>
 <html>
 <head>
@@ -87,9 +66,7 @@ if(isset($_GET['id_del'])){
                     <a href="addColloeg.php" class="nav-link">الكليات</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="users.php" class="nav-link">المستخدمين</a>
-                </li>
+
 
                 <li class="nav-item">
                     <a href="report.php" class="nav-link">التقارير </a>
@@ -107,54 +84,33 @@ if(isset($_GET['id_del'])){
 
         <div class="container">
             <div class="row">
-                <?php
 
-                if(isset($_GET['msg'])){
-                    echo '<div class="col-12 alert alert-success text-center">
-تم اضافة المنتج بنجاح 
-</div>';
-                }
-                ?>
-                <div class="col-6">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <div class="col-8">
-                                <input type="text" name="pro_name" class="form-control" placeholder="اسم المنتج ">
-                            </div>
-
-                            <div class="col-8">
-                                <input type="text" name="pro_qua" class="form-control" placeholder="الكمية">
-                            </div>
-
-                            <div class="col-8">
-                                <input type="text" name="pro_price" class="form-control" placeholder="السعر">
-                            </div>
-
-                            <div class="col-8">
-                                <select class="form-control" name="pro_type">
-                                    <?php
-                                    foreach ($departs as $depart){
-                                        echo '
-                                       <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
-                                       ';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="col-8">
-                                <input type="file" name="pro_file" class="form-control" placeholder=" ">
-                            </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p>طلبات جديدة</p>
+                            <p><?php echo $student->getCountNeworder();?></p>
                         </div>
-                        <div class="form-group">
-                            <div class="col-8 text-center">
-                                <input type="submit" name="sub" class="btn btn-info" value="اضافة">
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p>طلبات جاهزه </p>
+                            <p><?php echo $student->getCountDoneorder();?></p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p>طلبات تم تسليمه </p>
+                            <p><?php echo $student->getCountDelivorder(); ?></p>
+                        </div>
+                    </div>
+                </div>
                 <div class="cv"></div>
 
             </div>

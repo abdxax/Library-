@@ -69,6 +69,14 @@ $adm->AddPros($_GET['id_cou']);
                     <a href="addColloeg.php" class="nav-link">الكليات</a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="users.php" class="nav-link">المستخدمين</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="report.php" class="nav-link">التقارير </a>
+                </li>
+
 
                 <li class="nav-item">
                     <a href="../logout.php" class="nav-link">تسجيل خروج</a>

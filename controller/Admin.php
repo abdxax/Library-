@@ -141,6 +141,41 @@ class Admin extends DB{
         //return $sql;
     }
 
+    public function addUser($name,$id,$pass,$phone,$email){
+        $sql=$this->db_admin->prepare("INSERT INTO user(userName,password,role_i) VALUES(?,?,?)");
+        if($sql->execute(array($id,sha1($pass),4))){
+            $info=$this->db_admin->prepare("INSERT INTO info(user_id,name,phone,email,college) VALUES(?,?,?,?,?)");
+            if($info->execute(array($id,$name,$phone,$email,0))){
+                header('location:users.php?msg_done=don');
+            }
+
+
+        }
+    }
+
+    public function getAllUser(){
+        $sql=$this->db_admin->prepare("SELECT * FROM user LEFT JOIN info ON user.userName=info.user_id WHERE user.role_i=?");
+        $sql->execute(array(4));
+        return $sql;
+    }
+
+
+    public function deleteUser($id){
+        $sql=$this->db_admin->prepare("DELETE FROM user WHERE userName=?");
+        if($sql->execute(array($id))){
+            header("location:users.php?msg_er=don");
+        }
+    }
+
+    public function report($str,$en){
+       // $str='2020-12-07';
+       // $en='2020-12-09';
+        echo $str;
+        $sql=$this->db_admin->prepare("SELECT * from bill where date_req BETWEEN  '$str' AND '$en' ");
+        $sql->execute();
+        return $sql;
+    }
+
 
 
 

@@ -1,29 +1,10 @@
 <?php
-session_start();
-require "../controller/Admin.php";
+require '../controller/Admin.php';
 $adm=new Admin();
-$departs=$adm->getAllDep();
-$pros=$adm->getAllProud();
-$id=$_GET['id'];
-if(isset($_FILES['pro_file'])){
-    print_r($_FILES['pro_file']);
-    $pro_name=$_POST['pro_name'];
-    $pro_qua=$_POST['pro_qua'];
-    $pro_price=$_POST['pro_price'];
-    $pro_type=$_POST['pro_type'];
-
-    $fname=$_FILES['pro_file']['name'];
-    $ftm=$_FILES['pro_file']['tmp_name'];
-    $path="../poster/".$fname;
-    if(move_uploaded_file($ftm,$path)){
-        echo "done";
-    }
-    //$dep=$_POST['dep'];
-    $adm->addNewProudect($pro_name, $pro_price,$pro_qua,$pro_type,$path);
-}
-
-if(isset($_GET['id_del'])){
-    $adm->deletePro($_GET['id_del']);
+$orders=$adm->getorders();
+if(isset($_POST['sub'])){
+    $ids=$_POST['stu'];
+    $orders=$adm->getorders($ids);
 }
 ?>
 <html>
@@ -36,7 +17,9 @@ if(isset($_GET['id_del'])){
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <style>
-
+table{
+    overflow: scroll;
+}
 
     </style>
 </head>
@@ -54,7 +37,6 @@ if(isset($_GET['id_del'])){
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
 
     </div>
 </nav><!-- end nav-->
@@ -87,9 +69,7 @@ if(isset($_GET['id_del'])){
                     <a href="addColloeg.php" class="nav-link">الكليات</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="users.php" class="nav-link">المستخدمين</a>
-                </li>
+
 
                 <li class="nav-item">
                     <a href="report.php" class="nav-link">التقارير </a>
@@ -106,54 +86,78 @@ if(isset($_GET['id_del'])){
     <div class="contcat">
 
         <div class="container">
-            <div class="row">
-                <?php
+            <div class="row justify-content-center">
+                <div>
+                    <form method="post">
 
-                if(isset($_GET['msg'])){
-                    echo '<div class="col-12 alert alert-success text-center">
-تم اضافة المنتج بنجاح 
-</div>';
-                }
-                ?>
-                <div class="col-6">
-                    <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <div class="col-8">
-                                <input type="text" name="pro_name" class="form-control" placeholder="اسم المنتج ">
-                            </div>
+                            <div class="col-12">
+                                <select name="stu" class="form-control">
+                                    <option value="1">جديد</option>
+                                    <option value="2">جاهز للتسليم</option>
 
-                            <div class="col-8">
-                                <input type="text" name="pro_qua" class="form-control" placeholder="الكمية">
-                            </div>
-
-                            <div class="col-8">
-                                <input type="text" name="pro_price" class="form-control" placeholder="السعر">
-                            </div>
-
-                            <div class="col-8">
-                                <select class="form-control" name="pro_type">
-                                    <?php
-                                    foreach ($departs as $depart){
-                                        echo '
-                                       <option value="'.$depart['id'].'">'.$depart['dep_name'].'</option>
-                                       ';
-                                    }
-                                    ?>
                                 </select>
                             </div>
-
-                            <div class="col-8">
-                                <input type="file" name="pro_file" class="form-control" placeholder=" ">
-                            </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-8 text-center">
-                                <input type="submit" name="sub" class="btn btn-info" value="اضافة">
-                            </div>
+                            <input type="submit" name="sub" class="btn btn-info btn-block" value="بحث ">
                         </div>
+
                     </form>
                 </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>رقم الطلبية</th>
+                        <th>الرقم الوظيفي</th>
+                        <th>الحالة</th>
+                        <th>السعر</th>
+                        <th>طريقة الدفع </th>
+                        <th>المتبقي</th>
+                       <th>التفاصيل </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
 
+                    foreach ($orders as $ord){
+                        $total=$ord['total'];
+                        $pay=$ord['totalpay'];
+                        $ps=$total-$pay;
+                        $stu='';
+                        $pay='';
+
+                        if($ord['status']=='newOrder'||$ord['status']==''){
+                            $stu='جديد';
+                        }
+                        else if($ord['status']=='deliver'){
+                            $stu='تم التسليم';
+                        }
+                        else{
+                            $stu="جاهز للاستلام ";
+                        }
+                        if($ord['payway']==1){
+                            $pay="الدفع عند الاستلام ";
+                        }
+                        else{
+                            $pay="تم الدفع ";
+                        }
+                        echo '
+                        <tr>
+                         <td></td>
+                         <td>'.$ord['id'].'</td>
+                         <td>'.$ord['email'].'</td>
+                         <td>'.$stu.'</td>
+                         <td>'.$ord['total'].'</td>
+                         <td>'.$pay.'</td>
+                         <td>'.$ps.'</td>
+                         <td><a href="dets.php?id='.$ord['id'].'" class="btn btn-info">عرض الطلب </a> </td>
+</tr>
+                         ';
+                    }
+                    ?>
+                    </tbody>
 
                 <div class="cv"></div>
 

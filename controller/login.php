@@ -30,6 +30,11 @@ class Register extends DB{
                     $_SESSION['pass']=$pass;
                     header("location:teacher/index.php");
                 }
+                else  if($s['role_i']==4){
+                    $_SESSION['user']=$user;
+                    $_SESSION['pass']=$pass;
+                    header("location:employee/index.php");
+                }
             }
         }
         else{
